@@ -7,6 +7,7 @@ Template.signup.events({
             email: email,
             password: password
         });
+
         FlowRouter.go('home');
     }
 });
@@ -28,4 +29,5 @@ Template.signin.events({
         FlowRouter.go('home');
     }
 });
+
 
