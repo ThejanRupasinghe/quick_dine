@@ -3,12 +3,18 @@ Template.signup.events({
         event.preventDefault();
         var email = $('[name=email]').val();
         var password = $('[name=password]').val();
+        var role = $('[name=role]').val();
         Accounts.createUser({
             email: email,
-            password: password
+            password: password,
+            profile : {
+                role: role
+            }
         });
-
-        FlowRouter.go('home');
+        if(Meteor.user().profile.role=='waiter'){
+            FlowRouter.go('waiter_index')
+        }
+        FlowRouter.go('admin_index');
     }
 });
 
@@ -26,7 +32,11 @@ Template.signin.events({
         var email = $('[name=email]').val();
         var password = $('[name=password]').val();
         Meteor.loginWithPassword(email, password);
-        FlowRouter.go('home');
+        console.log(Meteor.user().profile.role);
+        if(Meteor.user().profile.role=='waiter'){
+            FlowRouter.go('waiter_index')
+        }
+        FlowRouter.go('admin_index');
     }
 });
 
