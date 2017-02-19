@@ -1,3 +1,5 @@
+Meteor.subscribe('users');
+
 Template.signup.events({
     'submit form': function(event){
         event.preventDefault();
@@ -11,10 +13,11 @@ Template.signup.events({
                 role: role
             }
         });
-        if(Meteor.user().profile.role=='waiter'){
+        if(role==='waiter'){
             FlowRouter.go('waiter_index')
+        }else{
+            FlowRouter.go('admin_index');
         }
-        FlowRouter.go('admin_index');
     }
 });
 
@@ -31,12 +34,17 @@ Template.signin.events({
         event.preventDefault();
         var email = $('[name=email]').val();
         var password = $('[name=password]').val();
+        // TODO: add validations
+        var role = Meteor.users.findOne({ "emails.address" : email }).profile.role;
+
         Meteor.loginWithPassword(email, password);
-        console.log(Meteor.user().profile.role);
-        if(Meteor.user().profile.role=='waiter'){
-            FlowRouter.go('waiter_index')
+
+        if(role==='waiter'){
+            console.log('in');
+            FlowRouter.go('waiter_index');
+        }else{
+            FlowRouter.go('admin_index');
         }
-        FlowRouter.go('admin_index');
     }
 });
 
