@@ -1,29 +1,39 @@
 <template name="signup">
+    <style>
+        body {
+            padding-top: 70px;
+        }
+    </style>
+    {{> nav_bar}}
+    <div class="container">
 
-    <div class="row">
-        <div class="col-md-6">
-            <form class="signup-form">
-                <h2>Please sign up</h2>
-                <div class="form-group">
-                    <label for="inputEmail">Email address</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword">Password:</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-                </div>
-                <div class="form-group">
-                    <label for="role">Select Role:</label>
-                    <select class="form-control" id="role" name="role">
-                        <option value="waiter">Waiter</option>
-                        <option value="cashier">Cashier</option>
-                        <option value="kitchen">Kitchen</option>
-                        <option value="customer">Customer</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                </div>
-                <button class="btn btn-primary" type="submit">Sign up</button>
-            </form>
+        <div class="row">
+            <div class="col-md-6">
+                <form class="signup-form">
+                    <h2>Please sign up</h2>
+                    <div class="form-group">
+                        <label for="inputEmail">Email address</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Email address"
+                               required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Password:</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Select Role:</label>
+                        <select class="form-control" id="role" name="role">
+                            <option value="waiter">Waiter</option>
+                            <option value="cashier">Cashier</option>
+                            <option value="kitchen">Kitchen</option>
+                            <option value="customer">Customer</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Sign up</button>
+                </form>
+            </div>
         </div>
     </div>
 

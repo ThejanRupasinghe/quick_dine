@@ -1,14 +1,9 @@
 <template name="master_layout">
-    <style>
-        body { padding-top: 70px; }
-    </style>
 
     {{> Template.dynamic template=styles}}
-    {{> Template.dynamic template=scripts}}
 
-    {{> nav_bar}}
-    <div class="container">
-        {{> Template.dynamic template=body}}
-    </div>
+    {{> Template.dynamic template=body}}
 
 </template>
+
+
