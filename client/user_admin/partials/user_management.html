@@ -23,18 +23,17 @@
                     <div class="box-body">
                         <table class="table table-bordered">
                             <thead>
-                            <tr>
-                                <!--<th>#</th>-->
-                                <th>Name</th>
-                                <th>Username</th>
-                                <th>Role</th>
-                            </tr>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Username</th>
+                                    <th>Role</th>
+                                </tr>
                             </thead>
                             <tbody>
                             {{#each users}}
                                 <tr>
-                                    <td>{{_id}}</td>
-                                    <td>{{emails}}</td>
+                                    <td>{{profile.name}}</td>
+                                    <td>{{username}}</td>
                                     <td>{{profile.role}}</td>
                                 </tr>
                             {{/each}}
@@ -65,16 +64,20 @@
                     <form role="form">
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email Address:</label>
-                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
+                                <label for="name">Name:</label>
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Enter Name" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password:</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                                <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Confirm Password:</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password" required>
+                                <input type="password" class="form-control" id="repassword" placeholder="Confirm Password" name="repassword" required>
                             </div>
                             <div class="form-group">
                                 <label>Select Role:</label>

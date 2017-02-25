@@ -8,16 +8,18 @@
 Template.signup.events({
     'submit form': function(event){
         event.preventDefault();
-        var email = $('[name=email]').val();
+        var name = $('[name=name]').val();
+        var username = $('[name=username]').val();
         var password = $('[name=password]').val();
         var role = $('[name=role]').val();
 
         // TODO: add validations
         Accounts.createUser({
-            email: email,
+            username: username,
             password: password,
             profile : {
-                role: role
+                role: role,
+                name : name
             }
         });
         if(role==='waiter'){
@@ -44,22 +46,12 @@ Template.nav_bar.events({
 Template.signin.events({
     'submit form': function(event){
         event.preventDefault();
-        var email = $('[name=email]').val();
+        var username = $('[name=username]').val();
         var password = $('[name=password]').val();
 
-        // TODO: add validations
-        Meteor.loginWithPassword(email, password,function (error) {
+        Meteor.loginWithPassword(username, password,function (error) {
             if(error !== undefined){
-                Template.signin.helpers({
-                    error: ()=>{
-                        return error;
-                    }
-                });
-                // $('error').append("hello");
-                alert.error("Failed to invite user");
-                console.log(error.reason);
-                throw new Meteor.Error('unauthorized', 'Only list owners can edit private lists.');
-
+                alert(error.reason);
             }else{
                 var role = Meteor.user().profile.role;
 

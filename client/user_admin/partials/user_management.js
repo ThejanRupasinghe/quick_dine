@@ -14,17 +14,29 @@ Template.user_management.helpers({
 Template.user_management.events({
     'submit form': function(event){
         event.preventDefault();
-        var email = $('[name=email]').val();
+        var name = $('[name=name]').val();
+        var username = $('[name=username]').val();
         var password = $('[name=password]').val();
+        var repassword = $('[name=repassword]').val();
         var role = $('[name=role]').val();
 
-        // TODO: add validations
-        Accounts.createUser({
-            email: email,
-            password: password,
-            profile : {
-                role: role
-            }
-        });
+        if (!(password===repassword)){
+            alert("Passwords don't match");
+        }else{
+            Meteor.call('createUserFromAdmin',username,password,role,name,function(error){
+                if(error !== undefined){
+                    alert(error.reason);
+                    $('[name=username]').val("");
+                    $('[name=password]').val("");
+                    $('[name=repassword]').val("");
+                }else{
+                    alert("User created successfully !");
+                    $('[name=name]').val("");
+                    $('[name=username]').val("");
+                    $('[name=password]').val("");
+                    $('[name=repassword]').val("");
+                }
+            });
+        }
     }
 });
