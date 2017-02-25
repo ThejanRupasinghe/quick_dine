@@ -1,0 +1,58 @@
+<template name="signin">
+    <style>
+        body {
+            padding-top: 70px;
+        }
+    </style>
+    {{> nav_bar}}
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-6">-->
+                <!--<form class="signin-form">-->
+                    <!--<h2>Please sign in</h2>-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="inputEmail">Email address</label>-->
+                        <!--<input type="email" id="inputEmail" name="email" class="form-control"-->
+                               <!--placeholder="Email address" required autofocus>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label for="inputPassword">Password</label>-->
+                        <!--<input type="password" id="inputPassword" name="password" class="form-control"-->
+                               <!--placeholder="Password" required>-->
+                    <!--</div>-->
+                    <!--<button class="btn btn-primary" type="submit">Sign in</button>-->
+                <!--</form>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><b>Quick Dine</b></a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Sign in to Quick Dine</p>
+
+            <form action="#" method="post" class="signin-form">
+                <div class="form-group has-feedback">
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Email">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-xs-offset-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat signin">Sign In</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+</template>
