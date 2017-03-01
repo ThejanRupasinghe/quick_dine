@@ -40,3 +40,14 @@ Template.user_management.events({
         }
     }
 });
+
+Template.user_record.events({
+    'click #delete-user': function(){
+        if(confirm("Are you sure want to delete this user ?")){
+            Meteor.call('deleteUserFromAdmin',this._id);
+        }
+    },
+    'click #edit-user':function(){
+        
+    }
+});

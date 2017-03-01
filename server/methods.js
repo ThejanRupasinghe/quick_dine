@@ -15,5 +15,8 @@ Meteor.methods({
                 name: name
             }
         });
+    },
+    deleteUserFromAdmin:function(id){
+        Meteor.users.remove({_id: id});
     }
 });

@@ -20,27 +20,31 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">Current Users</h3>
                     </div>
+                    
                     <div class="box-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Username</th>
-                                    <th>Role</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {{#each users}}
-                                <tr>
-                                    <td>{{profile.name}}</td>
-                                    <td>{{username}}</td>
-                                    <td>{{profile.role}}</td>
-                                </tr>
-                            {{/each}}
+                        {{#if Template.subscriptionsReady}}
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Username</th>
+                                        <th>Role</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            </tbody>
-                        </table>
+                                    {{#each users}}
+                                        {{> user_record}}
+                                    {{/each}}
+
+                                </tbody>
+                            </table>
+                        {{else}}
+                            <p>Loading...</p>
+                        {{/if}}
                     </div>
+
                     <div class="box-footer clearfix">
                         <ul class="pagination pagination-sm no-margin pull-right">
                             <li><a href="#">&laquo;</a></li>
