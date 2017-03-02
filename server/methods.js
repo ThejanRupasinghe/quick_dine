@@ -18,5 +18,11 @@ Meteor.methods({
     },
     deleteUserFromAdmin:function(id){
         Meteor.users.remove({_id: id});
+    },
+    updateUserFromAdmin:function (id,password,role,name) {
+        if (!(password==="")){
+            Accounts.setPassword(id,password);
+        }
+        Meteor.users.update(id, {$set: {"profile.role": role, "profile.name": name}});
     }
 });

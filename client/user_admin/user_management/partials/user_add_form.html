@@ -6,21 +6,23 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form">
+        <form role="form" id="add_form">
             <div class="box-body">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" name="name" class="form-control" id="name" placeholder="Enter Name" required autofocus>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="username_group">
                     <label for="username">Username:</label>
                     <input type="text" name="username" class="form-control" id="username" placeholder="Enter Username" required>
+                    <span class="help-block" id="username_helper"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="password_group">
                     <label for="password">Password:</label>
                     <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                    <span class="help-block" id="password_helper"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="repassword_group">
                     <label for="repassword">Confirm Password:</label>
                     <input type="password" class="form-control" id="repassword" placeholder="Confirm Password" name="repassword" required>
                 </div>

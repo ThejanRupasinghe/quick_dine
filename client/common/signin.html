@@ -5,26 +5,6 @@
         }
     </style>
     {{> nav_bar}}
-    <!--<div class="container">-->
-        <!--<div class="row">-->
-            <!--<div class="col-md-6">-->
-                <!--<form class="signin-form">-->
-                    <!--<h2>Please sign in</h2>-->
-                    <!--<div class="form-group">-->
-                        <!--<label for="inputEmail">Email address</label>-->
-                        <!--<input type="email" id="inputEmail" name="email" class="form-control"-->
-                               <!--placeholder="Email address" required autofocus>-->
-                    <!--</div>-->
-                    <!--<div class="form-group">-->
-                        <!--<label for="inputPassword">Password</label>-->
-                        <!--<input type="password" id="inputPassword" name="password" class="form-control"-->
-                               <!--placeholder="Password" required>-->
-                    <!--</div>-->
-                    <!--<button class="btn btn-primary" type="submit">Sign in</button>-->
-                <!--</form>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
 
     <div class="login-box">
         <div class="login-logo">
@@ -32,14 +12,14 @@
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg">Sign in to Quick Dine</p>
+            <p class="login-box-msg" id="helper_text">Sign in to Quick Dine</p>
 
-            <form action="#" method="post" class="signin-form">
-                <div class="form-group has-feedback">
+            <form class="signin-form">
+                <div class="form-group has-feedback" id="username_group">
                     <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
-                <div class="form-group has-feedback">
+                <div class="form-group has-feedback" id="password_group">
                     <input type="password" id="password" name="password" class="form-control" placeholder="Password" required autofocus>
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
