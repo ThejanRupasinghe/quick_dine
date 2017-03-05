@@ -57,6 +57,7 @@ Template.user_record.events({
     }
 });
 
+//no delete for logged in admin
 Template.user_record.helpers({
     isAdmin: function(id){
         return id !== Meteor.userId();

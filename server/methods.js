@@ -24,5 +24,14 @@ Meteor.methods({
             Accounts.setPassword(id,password);
         }
         Meteor.users.update(id, {$set: {"profile.role": role, "profile.name": name}});
+    },
+    seedCategories: function () {
+        Categories.insert({name: 'Breakfast'});
+        Categories.insert({name: 'Lunch'});
+        Categories.insert({name: 'Dinner'});
+        Categories.insert({name: 'Dessert'});
+        Categories.insert({name: 'Drinks'});
+        Categories.insert({name: 'Short Eats'});
+        Categories.insert({name: 'Others'});
     }
 });
