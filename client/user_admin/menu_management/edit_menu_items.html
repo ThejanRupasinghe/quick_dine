@@ -17,15 +17,12 @@
                 <div class="col-md-10">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
-                            <li><a href="#tab_1" data-toggle="tab">Breakfast</a></li>
-                            <li><a href="#tab_2" data-toggle="tab">Lunch</a></li>
-                            <li><a href="#tab_3" data-toggle="tab">Dinner</a></li>
-                            <li><a href="#" data-toggle="tab">Dessert</a></li>
-                            <li><a href="#" data-toggle="tab">Short Eats</a></li>
-                            <li><a href="#" data-toggle="tab">Others</a></li>
+                            {{#each categories}}
+                                <li><a href="#tab_{{@index}}" data-toggle="tab">{{name}}</a></li>
+                            {{/each}}
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane active" id="tab_1">
+                            <div class="tab-pane active" id="tab_0">
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
@@ -46,7 +43,7 @@
                                 </table>
                             </div>
                             <!-- /.tab-pane -->
-                            <div class="tab-pane" id="tab_2">
+                            <div class="tab-pane" id="tab_1">
                                 The European languages are members of the same family. Their separate existence is a myth.
                                 For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
                                 in their grammar, their pronunciation and their most common words. Everyone realizes why a
@@ -56,7 +53,7 @@
                                 and regular than that of the individual languages.
                             </div>
                             <!-- /.tab-pane -->
-                            <div class="tab-pane" id="tab_3">
+                            <div class="tab-pane" id="tab_2">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                                 when an unknown printer took a galley of type and scrambled it to make a type specimen book.
