@@ -33,5 +33,19 @@ Meteor.methods({
         Categories.insert({name: 'Drinks'});
         Categories.insert({name: 'Short Eats'});
         Categories.insert({name: 'Others'});
+    },
+    addMenuItemFromAdmin: function (name,category,unit_price) {
+        if(MenuItems.findOne({name: name, category: category})){
+            return false;
+        }else{
+            MenuItems.insert({
+                name: name,
+                category: category,
+                unit_price: unit_price,
+                inMenu: true,
+                CreatedAt: new Date()
+            });
+            return true;
+        }
     }
 });

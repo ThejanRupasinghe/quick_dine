@@ -19,26 +19,23 @@ MenuItemSchema = new SimpleSchema({
     },
     category: {
         type: String,
-        label: "Category:",
-        allowedValues: ["Breakfast", "Lunch", "Dinner", "Dessert", "Drinks", "Short Eats", "Other"]
+        label: "Category:"
     },
-    unitAmount:{
+    unit_amount:{
         type: Number,
         label: "Unit Amount:",
         defaultValue: 1,
         min: 1
     },
-    unitPrice:{
+    unit_price:{
         type: Number,
         label: "Unit Price:",
         min: 1
     },
     inMenu:{
         type: Boolean,
-        defaultValue: true,
-        optional: true,
-        autoform:{
-            type: "hidden"
+        autoValue: function () {
+            return true;
         }
     },
     createdAt: {
@@ -46,11 +43,8 @@ MenuItemSchema = new SimpleSchema({
         label: "Created At",
         autoValue: function () {
             return new Date();
-        },
-        autoform: {
-            type: "hidden"
         }
     }
 });
 
-MenuItems.attachSchema(MenuItemSchema);
+// MenuItems.attachSchema(MenuItemSchema);

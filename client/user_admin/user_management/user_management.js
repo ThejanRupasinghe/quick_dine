@@ -26,21 +26,34 @@ Template.user_management.events({
             $('#password_helper').html("Passwords don't match");
             $('[name=password]').val("");
             $('[name=repassword]').val("");
+            $('#username_group').removeClass("has-error");
+            $('#username_helper').html("");
+            $('[name=password]').focus();
         }else{
             if(confirm("Are you sure want to create this user ?")){
                 Meteor.call('createUserFromAdmin',username,password,role,name,function(error){
                     if(error !== undefined){
                         $('#username_group').addClass("has-error");
                         $('#username_helper').html(error.reason);
+                        $('#password_group').removeClass("has-error");
+                        $('#repassword_group').removeClass("has-error");
+                        $('#password_helper').html("");
                         $('[name=username]').val("");
                         $('[name=password]').val("");
                         $('[name=repassword]').val("");
+                        $('[name=username]').focus();
                     }else{
                         alert("User created successfully !");
                         $('[name=name]').val("");
                         $('[name=username]').val("");
                         $('[name=password]').val("");
                         $('[name=repassword]').val("");
+                        $('#password_group').removeClass("has-error");
+                        $('#repassword_group').removeClass("has-error");
+                        $('#username_group').removeClass("has-error");
+                        $('#password_helper').html("");
+                        $('#username_helper').html("");
+                        $('[name=name]').focus();
                     }
                 });
             }

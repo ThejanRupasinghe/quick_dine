@@ -22,9 +22,10 @@
                         <!--{{> quickForm collection="MenuItems" id="insertMenuItemForm" type="insert"}}-->
                         <form role="form" id="add_form">
                             <div class="box-body">
-                                <div class="form-group">
+                                <div class="form-group" id="name_group">
                                     <label for="name">Name:</label>
                                     <input type="text" name="name" class="form-control" id="name" placeholder="Enter food item name" required autofocus>
+                                    <span class="help-block" id="name_helper"></span>
                                 </div>
                                 <div class="form-group">
                                     <label>Select Category:</label>
@@ -33,11 +34,6 @@
                                             <option value={{_id}}>{{name}}</option>
                                         {{/each}}
                                     </select>
-                                </div>
-                                <div class="form-group" id="unit_amount_group">
-                                    <label for="unit_amount">Unit Amount:</label>
-                                    <input type="number" name="unit_amount" class="form-control" id="unit_amount" placeholder="Enter the amount to consider as a unit" required>
-                                    <span class="help-block" id="unit_amount_helper"></span>
                                 </div>
                                 <div class="form-group" id="unit_price_group">
                                     <label for="unit_price">Unit Price: (Rs.)</label>

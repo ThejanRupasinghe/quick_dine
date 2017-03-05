@@ -1,0 +1,17 @@
+<template name="item_table">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Unit Price</th>
+            <th>Actions</th>
+            <th>{{_id}}</th>
+        </tr>
+        </thead>
+        <tbody>
+            {{#each menuItems}}
+                {{> item_record}}
+            {{/each}}
+        </tbody>
+    </table>
+</template>
