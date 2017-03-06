@@ -1,7 +1,10 @@
 <template name="item_record">
     <tr>
-        <td>{{name}}</td>
-        <td>{{unit_price}}</td>
-        <td>Buttons</td>
+        <td>{{item.name}}</td>
+        <td>{{item.unit_price}}</td>
+        <td>
+            <a href="/admin/edit_menu_item/{{item._id}}" ><button type="button" class="btn btn-warning btn-flat" id="edit-item"> <i class="fa fa-edit"></i></button></a>
+            <button type="button" class="btn btn-danger btn-flat" id="remove-item"><i class="fa fa-remove"></i></button>
+        </td>
     </tr>
 </template>

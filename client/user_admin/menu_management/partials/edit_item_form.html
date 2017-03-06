@@ -1,12 +1,13 @@
-<template name="add_menu_items">
+<template name="edit_item_form">
 
     <section class="content-header">
         <h1>
             Menu Management
-            <small>Add Menu Items</small>
+            <small>Edit Menu Items</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li>Menu Management</li>
             <li class="active">Menu Management</li>
         </ol>
     </section>
@@ -23,12 +24,16 @@
                             <div class="box-body">
                                 <div class="form-group" id="name_group">
                                     <label for="name">Name:</label>
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter food item name" required autofocus>
+                                    <input type="text" name="name" class="form-control" id="name" value="{{menuItem.name}}" required autofocus>
                                     <span class="help-block" id="name_helper"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="category">Select Category:</label>
-                                    <select class="form-control" name="category">
+                                    <label for="current_category">Current Category:</label>
+                                    <input type="text" name="current_category" class="form-control" id="current_category" value="{{category.name}}" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="new_category">Select New Category:</label>
+                                    <select class="form-control" name="new_category">
                                         {{#each categories}}
                                             <option value={{_id}}>{{name}}</option>
                                         {{/each}}
@@ -36,9 +41,10 @@
                                 </div>
                                 <div class="form-group" id="unit_price_group">
                                     <label for="unit_price">Unit Price: (Rs.)</label>
-                                    <input type="number" name="unit_price" class="form-control" id="unit_price" placeholder="Enter unit price" required>
+                                    <input type="number" name="unit_price" class="form-control" id="unit_price" value="{{menuItem.unit_price}}" required>
                                     <span class="help-block" id="unit_price_helper"></span>
                                 </div>
+                                <!--Previous picture here-->
                                 <div class="form-group" id="item_picture_group">
                                     <label for="item_picture">Food Item Picture:</label>
                                     <input id="item_picture" name="item_picture" type="file">
@@ -48,7 +54,8 @@
                             <!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">ADD</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="button" class="btn btn-warning">Cancel</button>
                             </div>
                         </form>
                     </div>
@@ -56,4 +63,5 @@
             </div>
         </div>
     </section>
+
 </template>

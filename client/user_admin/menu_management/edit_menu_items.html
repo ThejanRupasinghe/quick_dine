@@ -22,9 +22,12 @@
                             {{/each}}
                         </ul>
                         <div class="tab-content">
-                            {{#each categories}}
+                            <div class="tab-pane active">
+                                Click on the category
+                            </div>
+                            {{#each category in categories}}
                                 <div class="tab-pane" id="tab_{{@index}}">
-                                    {{> item_table}}
+                                    {{> item_table category=category}}
                                 </div>
                             {{/each}}
                             <!-- /.tab-pane -->

@@ -1,17 +1,25 @@
 <template name="item_table">
+
     <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Unit Price</th>
-            <th>Actions</th>
-            <th>{{_id}}</th>
-        </tr>
-        </thead>
-        <tbody>
-            {{#each menuItems}}
-                {{> item_record}}
-            {{/each}}
-        </tbody>
+        {{#if Template.subscriptionsReady}}
+
+            <thead>
+            <tr>
+                <th style="width: 500px">Name</th>
+                <th>Unit Price (Rs.)</th>
+                <th style="width: 100px">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                {{#each item in itemForCategory}}
+                    {{> item_record item=item}}
+                {{/each}}
+            </tbody>
+
+        {{else}}
+            Loading...
+        {{/if}}
+
     </table>
+
 </template>

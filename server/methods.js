@@ -36,7 +36,7 @@ Meteor.methods({
     },
     addMenuItemFromAdmin: function (name,category,unit_price) {
         if(MenuItems.findOne({name: name, category: category})){
-            return false;
+            throw new Meteor.Error("not-unique", "This food item has added before");
         }else{
             MenuItems.insert({
                 name: name,
@@ -45,7 +45,6 @@ Meteor.methods({
                 inMenu: true,
                 CreatedAt: new Date()
             });
-            return true;
         }
     }
 });

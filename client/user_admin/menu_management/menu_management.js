@@ -24,18 +24,29 @@ Template.add_menu_items.events({
             $('#unit_price_helper').html("Invalid Unit Price");
             $('[name=unit_price]').val("");
             $('[name=unit_price]').focus();
+            $('#name_group').removeClass("has-error");
+            $('#name_helper').html("");
         }else{
             if(confirm("Do you want to add this menu item ?")){
-                if (!(Meteor.call('addMenuItemFromAdmin',name,category,unit_price))){
-                //     $('#name_group').addClass("has-error");
-                //     $('#name_helper').html("This food item has added before");
-                //     $('[name=name]').val("");
-                // }else{
-                    $('[name=name]').val("");
-                    $('[name=unit_price]').val("");
-                    $('[name=name]').focus();
-                    alert("Menu Item added successfully");
-                }
+                Meteor.call('addMenuItemFromAdmin',name,category,unit_price,function (error) {
+                    if(error !== undefined){
+                        $('#name_group').addClass("has-error");
+                        $('#name_helper').html(error.reason);
+                        $('[name=name]').val("");
+                        $('[name=name]').focus();
+                        $('#unit_price_group').removeClass("has-error");
+                        $('#unit_price_helper').html("");
+                    }else{
+                        $('[name=name]').val("");
+                        $('[name=unit_price]').val("");
+                        $('[name=name]').focus();
+                        $('#unit_price_group').removeClass("has-error");
+                        $('#unit_price_helper').html("");
+                        $('#name_group').removeClass("has-error");
+                        $('#name_helper').html("");
+                        alert("Menu Item added successfully");
+                    }
+                });
             }
         }
     }
@@ -61,14 +72,13 @@ Template.edit_menu_items.helpers({
 Template.item_table.onCreated(function () {
     var self = this;
     self.autorun(function () {
-        self.subscribe('menuItems');
+        self.subscribe('itemForCategory',Template.instance().data.category._id);
     });
 });
 
 Template.item_table.helpers({
-    menuItems: ()=>{
-        console.log(this._id);
-        return MenuItems.find({category: this._id});
+    itemForCategory: ()=>{
+        return MenuItems.find({category: Template.instance().data.category._id, inMenu: true});
     }
 });
 //----
