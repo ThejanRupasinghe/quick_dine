@@ -46,5 +46,19 @@ Meteor.methods({
                 CreatedAt: new Date()
             });
         }
-    }
+    },
+    updateMenuItemFromAdmin:function (id,name,category,unit_price) {
+        if(name==null){
+            MenuItems.update(id,{$set: {"unit_price": unit_price}});
+        }else{
+            if(MenuItems.findOne({name: name, category: category})){
+                throw new Meteor.Error("not-unique", "This food item has added before");
+            }else {
+                MenuItems.update(id, {$set: {"name": name, "category": category, "unit_price": unit_price}});
+            }
+        }
+    },
+    removeItemMenuFromAdmin:function(id){
+        MenuItems.update(id, {$set: {"inMenu": false}});
+    },
 });

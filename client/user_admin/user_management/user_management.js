@@ -72,7 +72,14 @@ Template.user_record.events({
 
 //no delete for logged in admin
 Template.user_record.helpers({
-    isAdmin: function(id){
+    isNotAdmin: function(id){
+        return id !== Meteor.userId();
+    }
+});
+
+//no edit role for logged in admin
+Template.user_edit_form.helpers({
+    isNotAdmin: function(id){
         return id !== Meteor.userId();
     }
 });

@@ -29,17 +29,19 @@
                     <label for="role">Current Role:</label>
                     <input type="text" class="form-control" id="role" name="role" value="{{data.profile.role}}" disabled>
                 </div>
-                <div class="form-group">
-                    <label>Select New Role: (Keep empty for no change)</label>
-                    <select class="form-control" name="new_role">
-                        <option value="null" selected></option>
-                        <option value="waiter">Waiter</option>
-                        <option value="cashier">Cashier</option>
-                        <option value="kitchen">Kitchen</option>
-                        <option value="customer">Customer</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                </div>
+                {{#if isNotAdmin data._id}}
+                    <div class="form-group">
+                        <label>Select New Role: (Keep empty for no change)</label>
+                        <select class="form-control" name="new_role">
+                            <option value="null" selected></option>
+                            <option value="waiter">Waiter</option>
+                            <option value="cashier">Cashier</option>
+                            <option value="kitchen">Kitchen</option>
+                            <option value="customer">Customer</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                {{/if}}
                 <input type="hidden" class="form-control" id="id" name="id" value="{{data._id}}" >
 
             </div>

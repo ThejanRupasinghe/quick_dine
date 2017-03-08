@@ -20,20 +20,22 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">Add New Menu Item</h3>
                         </div>
-                        <form role="form" id="add_form">
+                        <form role="form" id="edit_form">
                             <div class="box-body">
                                 <div class="form-group" id="name_group">
                                     <label for="name">Name:</label>
-                                    <input type="text" name="name" class="form-control" id="name" value="{{menuItem.name}}" required autofocus>
+                                    <input type="text" name="new_name" class="form-control" id="new_name" value="{{menuItem.name}}" required autofocus>
                                     <span class="help-block" id="name_helper"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="current_category">Current Category:</label>
-                                    <input type="text" name="current_category" class="form-control" id="current_category" value="{{category.name}}" disabled>
+                                    <label for="current_category_name">Current Category:</label>
+                                    <input type="text" name="current_category_name" class="form-control" value="{{category.name}}" disabled>
+                                    <input type="hidden" name="current_category" class="form-control" value="{{menuItem.category}}" disabled>
                                 </div>
                                 <div class="form-group">
-                                    <label for="new_category">Select New Category:</label>
-                                    <select class="form-control" name="new_category">
+                                    <label for="new_category">Select New Category: (Keep empty for no change)</label>
+                                    <select class="form-control" name="new_category" id="new_category">
+                                        <option value="null" selected></option>
                                         {{#each categories}}
                                             <option value={{_id}}>{{name}}</option>
                                         {{/each}}
@@ -50,12 +52,14 @@
                                     <input id="item_picture" name="item_picture" type="file">
                                     <p class="help-block" id="item_picture_helper">Upload a picture of the food item</p>
                                 </div>
+                                <input type="hidden" name="id" id="id" value="{{menuItem._id}}">
+                                <input type="hidden" name="current_name" id="current_name" value="{{menuItem.name}}">
                             </div>
                             <!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Save</button>
-                                <button type="button" class="btn btn-warning">Cancel</button>
+                                <button type="submit" class="btn btn-primary" id="save">Save</button>
+                                <button type="button" class="btn btn-warning" id="cancel">Cancel</button>
                             </div>
                         </form>
                     </div>

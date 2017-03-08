@@ -82,3 +82,77 @@ Template.item_table.helpers({
     }
 });
 //----
+
+//EDIT ITEM FORM
+Template.edit_item_form.onCreated(function () {
+    var self = this;
+    self.autorun(function () {
+        self.subscribe('categories');
+    });
+});
+
+Template.edit_item_form.helpers({
+    categories: ()=>{
+        return Categories.find({});
+    }
+});
+
+Template.edit_item_form.events({
+    'submit #edit_form': function(event){
+        event.preventDefault();
+        var id = $('[name=id]').val();
+        var current_name = $('[name=current_name]').val();
+        var new_name = $('[name=new_name]').val();
+        var current_category = $('[name=current_category]').val();
+        var new_category = $('[name=new_category]').val();
+        var unit_price = $('[name=unit_price]').val();
+
+        if(confirm("Are you sure want to update this item ?")){
+            if(new_category===current_category || new_category==="null"){
+                if(current_name===new_name){
+                    Meteor.call('updateMenuItemFromAdmin',id,null,new_category,unit_price);
+                    alert("Menu Item updated successfully");
+                    Router.go('admin_menu_edit');
+                }else{
+                    Meteor.call('updateMenuItemFromAdmin',id,new_name,current_category,unit_price,function (error) {
+                        if(error!==undefined){
+                            $('[name=new_name]').val("");
+                            $('#name_group').addClass("has-error");
+                            $('#name_helper').html(error.reason);
+                        }else{
+                            Meteor.call('updateMenuItemFromAdmin',id,null,new_category,unit_price);
+                            alert("Menu Item updated successfully");
+                            Router.go('admin_menu_edit');
+                        }
+                    });
+                }
+            }else{
+                Meteor.call('updateMenuItemFromAdmin',id,new_name,new_category,unit_price,function (error) {
+                    if(error!==undefined){
+                        $('[name=new_name]').val("");
+                        $('#name_group').addClass("has-error");
+                        $('#name_helper').html(error.reason);
+                    }else{
+                        Meteor.call('updateMenuItemFromAdmin',id,null,new_category,unit_price);
+                        alert("Menu Item updated successfully");
+                        Router.go('admin_menu_edit');
+                    }
+                });
+            }
+        }
+    },
+    'click #cancel':function () {
+        Router.go('admin_menu_edit');
+    }
+});
+//----
+
+//ITEM RECORD
+Template.item_record.events({
+    'click #remove-item': function(){
+        if(confirm("Are you sure want to remove this item from menu ?")){
+            Meteor.call('removeItemMenuFromAdmin',this.item._id);
+            alert("User deleted successfully !");
+        }
+    }
+});
