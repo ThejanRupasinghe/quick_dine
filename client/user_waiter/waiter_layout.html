@@ -1,9 +1,9 @@
-<template name="waiter_index">
+<template name="waiter_layout">
     <style>
         body { padding-top: 70px; }
     </style>
     {{> nav_bar}}
     <div class="container">
-        <h1>Waiter Home</h1>
+        {{> Template.dynamic template=content}}
     </div>
 </template>

@@ -61,7 +61,7 @@ Template.signin.events({
                 var role = Meteor.user().profile.role;
 
                 if(role==='waiter'){
-                    Router.go('waiter_index');
+                    Router.go('waiter_home');
                 }else if(role==='cashier') {
                     Router.go('cashier_index');
                 }else if(role==='kitchen') {
