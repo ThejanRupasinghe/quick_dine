@@ -21,12 +21,6 @@ MenuItemSchema = new SimpleSchema({
         type: String,
         label: "Category:"
     },
-    unit_amount:{
-        type: Number,
-        label: "Unit Amount:",
-        defaultValue: 1,
-        min: 1
-    },
     unit_price:{
         type: Number,
         label: "Unit Price:",

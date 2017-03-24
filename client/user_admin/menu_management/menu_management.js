@@ -72,12 +72,12 @@ Template.edit_menu_items.helpers({
 Template.item_table.onCreated(function () {
     var self = this;
     self.autorun(function () {
-        self.subscribe('itemForCategory',Template.instance().data.category._id);
+        self.subscribe('itemsForCategory',Template.instance().data.category._id);
     });
 });
 
 Template.item_table.helpers({
-    itemForCategory: ()=>{
+    itemsForCategory: ()=>{
         return MenuItems.find({category: Template.instance().data.category._id, inMenu: true});
     }
 });
@@ -156,3 +156,4 @@ Template.item_record.events({
         }
     }
 });
+//----

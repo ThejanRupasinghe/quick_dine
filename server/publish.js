@@ -6,7 +6,7 @@ Meteor.publish("categories", function () {
     return Categories.find({});
 });
 
-Meteor.publish("itemForCategory", function (id) {
+Meteor.publish("itemsForCategory", function (id) {
     return MenuItems.find({category: id, inMenu: true});
 });
 
