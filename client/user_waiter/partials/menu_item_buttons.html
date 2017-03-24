@@ -1,6 +1,5 @@
 <template name="menu_item_buttons">
-    <h1>{{id}}</h1>
-    {{#each menuItems}}
-        {{name}}
+    {{#each itemsForCategory}}
+        {{> menu_item_button}}
     {{/each}}
 </template>

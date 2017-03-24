@@ -1,6 +1,3 @@
-//some variables
-let category_id;
-
 //NEW ORDER
 Template.new_order.onCreated(function () {
     var self = this;
@@ -19,9 +16,9 @@ Template.new_order.helpers({
 //CATEGORY BUTTON
 Template.category_button.events({
     'click #category_btn': function(){
-        category_id=Template.instance().data._id;
-        console.log(category_id);
-        BlazeLayout.render('waiter_layout',{content: 'new_order', id: Template.instance().data._id, menuItems: 'menu_item_buttons'});
+        var myContainer = document.getElementById('myContainer');
+        myContainer.innerHTML = '';
+        Blaze.renderWithData(Template.menu_item_buttons,{id: Template.instance().data._id},myContainer);
     }
 });
 //----
@@ -30,14 +27,13 @@ Template.category_button.events({
 Template.menu_item_buttons.onCreated(function () {
     var self = this;
     self.autorun(function () {
-        self.subscribe('menuItems');
+        self.subscribe('itemsForCategory',Template.instance().data.id);
     });
 });
 
 Template.menu_item_buttons.helpers({
-    menuItems: ()=>{
-        console.log(category_id);
-        return MenuItems.find({inMenu: true});
+    itemsForCategory: ()=>{
+        return MenuItems.find({category: Template.instance().data.id, inMenu: true});
     }
 });
 //----
