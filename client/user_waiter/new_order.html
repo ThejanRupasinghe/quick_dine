@@ -1,19 +1,43 @@
 <template name="new_order">
 
     <div class="row">
-        <div class="col-md-12">
-            {{#each categories}}
-                {{> category_button}}
-            {{/each}}
-        </div>
-    </div>
 
-    <hr>
+        <div class="col-md-7">
+            
+            <div>
+                {{#if Template.subscriptionsReady}}
+                    {{#each categories}}
+                        {{> category_button}}
+                    {{/each}}
+                {{else}}
+                    Loading...
+                {{/if}}
+            </div>
 
-    <div class="row">
-        <div class="col-md-12" id="myContainer">
-            {{> Template.dynamic template=menuItems}}
+            <div>
+                <hr>
+            </div>
+
+            <div id="menuItemContainer">
+                {{> Template.dynamic template=menuItems}}
+            </div>
+
         </div>
+        
+        <div class="col-md-5">
+            <div class="well text-center" style="padding-top: 5px">
+                <h3><strong>New Order</strong></h3>
+                <div class="well" style="background: #00a7d0"><strong>Hoppers - 5</strong></div>
+                <div class="well" style="background: #00a7d0"><strong>Bread - 2</strong></div>
+                <div class="well" style="background: #00a7d0"><strong>String Hoppers - 20</strong></div>
+                <div class="well" style="background: #00a7d0"><strong>Rice - 3</strong></div>
+                <div class="row">
+                    <div class="btn btn-success btn-lg">Submit</div>
+                    <div class="btn btn-info btn-lg">Cancel</div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </template>

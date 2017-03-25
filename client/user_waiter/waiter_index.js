@@ -25,7 +25,7 @@ Template.new_order.helpers({
 //CATEGORY BUTTON
 Template.category_button.events({
     'click #category_btn': function(){
-        var myContainer = document.getElementById('myContainer');
+        var myContainer = document.getElementById('menuItemContainer');
         myContainer.innerHTML = '';
         Blaze.renderWithData(Template.menu_item_buttons,{id: Template.instance().data._id},myContainer);
     }
@@ -43,6 +43,16 @@ Template.menu_item_buttons.onCreated(function () {
 Template.menu_item_buttons.helpers({
     itemsForCategory: ()=>{
         return MenuItems.find({category: Template.instance().data.id, inMenu: true});
+    }
+});
+//----
+
+//MENU ITEM BUTTON
+Template.menu_item_button.events({
+    'click #menu_item_btn': function(){
+        console.log(this._id);
+        console.log(this.name);
+        $('#myModal').modal('show');
     }
 });
 //----
