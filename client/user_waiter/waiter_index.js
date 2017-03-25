@@ -1,6 +1,15 @@
+//TEMP VARIABLE FOR NEW ORDER
+let new_order = {};
+
 //NEW ORDER
 Template.new_order.onCreated(function () {
     var self = this;
+
+    //adding tableNo to the new_order temp object
+    route = Router.current();
+    new_order.tableNo = route.params.tableNo;
+    console.log(new_order);
+
     self.autorun(function () {
         self.subscribe('categories');
     });
@@ -37,4 +46,3 @@ Template.menu_item_buttons.helpers({
     }
 });
 //----
-

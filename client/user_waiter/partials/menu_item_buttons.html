@@ -1,5 +1,9 @@
 <template name="menu_item_buttons">
-    {{#each itemsForCategory}}
-        {{> menu_item_button}}
-    {{/each}}
+    {{#if Template.subscriptionsReady}}
+        {{#each itemsForCategory}}
+            {{> menu_item_button}}
+        {{/each}}
+    {{else}}
+        Loading...
+    {{/if}}
 </template>
