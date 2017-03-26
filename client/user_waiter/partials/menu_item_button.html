@@ -11,7 +11,7 @@
         }
     </style>
 
-    <div class="btn btn-warning btn-xlarge" id="menu_item_btn">{{name}}</div>
+    <div class="btn btn-warning btn-xlarge" id="menu_item_btn" >{{name}}</div>
 
    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -24,53 +24,68 @@
 
 					<div class="row">
 						<div class="col-md-8 col-md-offset-2">
-							<div class="well" id="numberDisplay">
+							<div class="well text-center" id="numberDisplay" style="font-weight: bold;font-size: 25px;padding: 10px">
 							</div>
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="col-md-1 col-md-offset-2 btn btn-primary btn-lg text-center">
+						<div class="col-md-2 col-md-offset-2 btn btn-primary btn-lg text-center numberButton">
 							<strong>1</strong>
 						</div>
-						<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center">
-							<strong>1</strong>
+						<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center numberButton">
+							<strong>2</strong>
 						</div>
-						<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center">
-							<strong>1</strong>
+						<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center numberButton">
+							<strong>3</strong>
 						</div>
 					</div>
 
 					<br>
 
 					<div class="row">
-						<div class="col-md-2 col-md-offset-2 btn btn-primary btn-lg text-center">
-							<strong>1</strong>
+						<div class="col-md-2 col-md-offset-2 btn btn-primary btn-lg text-center numberButton">
+							<strong>4</strong>
 						</div>
-						<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center">
-							<strong>1</strong>
+						<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center numberButton">
+							<strong>5</strong>
 						</div>
-						<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center">
-							<strong>1</strong>
+						<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center numberButton">
+							<strong>6</strong>
 						</div>
 					</div>
 
+                    <br>
+
 					<div class="row">
-						<div class="col-md-2 col-md-offset-2 btn btn-primary btn-lg text-center">
-							<strong>1</strong>
+						<div class="col-md-2 col-md-offset-2 btn btn-primary btn-lg text-center numberButton">
+							<strong>7</strong>
 						</div>
-						<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center">
-							<strong>1</strong>
+						<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center numberButton">
+							<strong>8</strong>
 						</div>
-						<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center">
-							<strong>1</strong>
+						<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center numberButton">
+							<strong>9</strong>
 						</div>
 					</div>
+
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md-2 col-md-offset-5 btn btn-primary btn-lg text-center numberButton">
+                            <strong>0</strong>
+                        </div>
+                        <div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center clearButton">
+                            <strong>C</strong>
+                        </div>
+                    </div>
 					
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+                    <div class="row">
+                        <div class="col-md-2 col-md-offset-4 btn btn-success btn-lg text-center" id="addMenuItem">ADD</div>
+                        <div class="col-md-2 col-md-offset-1 btn btn-info btn-lg text-center" data-dismiss="modal">Cancel</div>
+                    </div>
 				</div>
 			</div>
 		</div>

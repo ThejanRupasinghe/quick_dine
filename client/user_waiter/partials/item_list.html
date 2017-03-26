@@ -1,0 +1,14 @@
+<template name="item_list">
+    <div class="col-md-5">
+        <div class="well text-center" style="padding-top: 5px">
+            <h3><strong>New Order - {{tableNo}}</strong></h3>
+            {{#each new_order.menuItems}}
+                <div class="well" style="background: #00a7d0"><strong>{{name}} - {{quantity}}</strong></div>
+            {{/each}}
+            <div class="row">
+                <div class="btn btn-success btn-lg">Submit</div>
+                <div class="btn btn-info btn-lg">Cancel</div>
+            </div>
+        </div>
+    </div>
+</template>
