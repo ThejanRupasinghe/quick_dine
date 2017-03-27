@@ -14,16 +14,18 @@ MenuItems.allow({
 
 MenuItemSchema = new SimpleSchema({
     name: {
-        type: String,
-        label: "Name:"
+        type: String
     },
     category: {
         type: String,
-        label: "Category:"
+        allowedValues: function () {
+            return Categories.find().map(function (doc) {
+                return doc._id;
+            })
+        }
     },
     unit_price:{
         type: Number,
-        label: "Unit Price:",
         min: 1
     },
     inMenu:{
@@ -34,11 +36,11 @@ MenuItemSchema = new SimpleSchema({
     },
     createdAt: {
         type: Date,
-        label: "Created At",
         autoValue: function () {
             return new Date();
         }
     }
 });
 
+//Categories.find({},{fields: "_id"}).map((e) => {return e._id;})
 // MenuItems.attachSchema(MenuItemSchema);

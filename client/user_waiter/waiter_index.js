@@ -52,18 +52,39 @@ Template.menu_item_button.events({
     'click .numberButton': function(event){
         $("#numberDisplay").append(event.target.textContent.trim());
     },
+    'click .clearButton': function () {
+        $('#numberDisplay').html('');
+    },
     'click #addMenuItem': function(){
-        let quantity = $("#numberDisplay").html();
+        let quantity = parseInt($("#numberDisplay").html().trim());
         new_order.menuItems.push({name: clicked_item, quantity: quantity});
         $('#myModal').modal('hide');
         var itemListContainer = document.getElementById('itemListContainer');
         itemListContainer.innerHTML = '';
-        Blaze.renderWithData(Template.item_list,{new_order: new_order, tableNo: new_order.tableNo},itemListContainer);
+        Blaze.renderWithData(Template.item_list,{new_order: new_order, tableNo: new_order.tableNo, submit: true},itemListContainer);
         console.log(new_order);
     },
     'click #menu_item_btn': function(){
         $('#myModal').modal('show');
         clicked_item = this.name;
+    }
+});
+//----
+
+//ITEM LIST
+Template.item_list.events({
+    'click #cancel_order': function () {
+        new_order = {menuItems: []};
+        Router.go('waiter_home');
+    },
+    'click #submit_order': function () {
+        Meteor.call('addOrderFromWaiter',new_order.tableNo,new_order.menuItems,function (error) {
+            if(error!==undefined) {
+                $('#errors').html(error.reason);
+            }else{
+                Router.go('waiter_home');
+            }
+        });
     }
 });
 //----
