@@ -1,12 +1,23 @@
 <template name="item_list">
     <div class="col-md-5">
-        <div class="well text-center" style="padding-top: 5px">
-            <h3><strong>New Order - {{tableNo}}</strong></h3>
+        <div class="well" style="padding-top: 5px">
+            <span class="text-center">
+                <h3><strong>New Order - {{tableNo}}</strong></h3>
+            </span>
             <span id="errors" style="color: red"></span>
             {{#each new_order.menuItems}}
-                <div class="well" style="background: #00a7d0"><strong>{{name}} - {{quantity}}</strong></div>
+                <div class="well" style="background: #96e7ff">
+                    <div class="text-center">
+                        <strong>{{name}} - {{quantity}}</strong>
+
+                        <button type="button" class="btn btn-sm btn-danger removeItem">
+                            <span class="glyphicon glyphicon-remove"></span>&nbsp;
+                        </button>
+                    </div>
+
+                </div>
             {{/each}}
-            <div class="row">
+            <div class="row text-center">
                 {{#if submit}}
                     <div class="btn btn-success btn-lg" id="submit_order">Submit</div>
                 {{/if}}
