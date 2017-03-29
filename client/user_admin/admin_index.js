@@ -1,8 +1,9 @@
 Template.nav_bar_admin.events({
-    'click .signout': function(event){
+    'click #signout': function(event){
         event.preventDefault();
-        Meteor.logout();
-        Router.go('signin');
+        Meteor.logout(function () {
+            Router.go('signin');
+        });
     }
 });
 

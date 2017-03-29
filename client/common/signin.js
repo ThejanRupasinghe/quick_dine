@@ -30,7 +30,8 @@ Template.signup.events({
             Router.go('kitchen_index');
         }else if(role==='customer') {
             Router.go('customer_index');
-        }else{Router.go('admin_dashboard');
+        }else{
+            Router.go('admin_dashboard');
         }
     }
 });
@@ -38,8 +39,9 @@ Template.signup.events({
 Template.nav_bar.events({
     'click .signout': function(event){
         event.preventDefault();
-        Meteor.logout();
-        Router.go('signin');
+        Meteor.logout(function () {
+            Router.go('signin');
+        });
     }
 });
 

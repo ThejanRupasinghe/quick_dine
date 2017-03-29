@@ -7,9 +7,9 @@ Template.waiter_home.events({
     'click #newOrder': function () {
         Router.go('waiter_new_order');
     },
-
 });
 //----
+
 //NEW ORDER
 Template.new_order.onCreated(function () {
     var self = this;

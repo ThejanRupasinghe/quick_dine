@@ -1,0 +1,19 @@
+import {resetDatabase} from 'meteor/xolvio:cleaner';
+
+describe('user management', function () {
+    it('method creates a user', function () {
+        beforeEach(function () {
+            resetDatabase();
+        });
+
+        let username = "admin1";
+        let password = "admin1";
+        let role = "admin";
+        let name = "Thejan";
+
+        Meteor.apply('createUserFromAdmin',username,password,role,name);
+
+    })
+});
+
+//meteor test --driver-package=practicalmeteor:mocha
