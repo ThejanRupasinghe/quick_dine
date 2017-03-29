@@ -12,7 +12,7 @@ Orders.allow({
     }
 });
 
-// ****STATE CODE FOR ORDERS****
+// ****STATUS CODE FOR ORDERS****
 // 0 - NOT READY
 // 1 - COOKING
 // 2 - READY
@@ -39,6 +39,14 @@ OrderSchema = new SimpleSchema({
     status:{
         type: Number,
         allowedValues: [0, 1, 2, 3, 4]
+    },
+    waiterId: {
+        type: String,
+        allowedValues: function () {
+            return Meteor.users.find({profile: {role: "waiter"}}).map(function (doc) {
+                return doc._id;
+            })
+        }
     },
     createdAt: {
         type: Date,

@@ -2,11 +2,32 @@
 let new_order = {menuItems: []};
 let clicked_item;
 
+// ****STATUS CODE FOR ORDERS****
+// 0 - NOT READY
+// 1 - COOKING
+// 2 - READY
+// 3 - SERVED
+// 4 - BILLED
+// *****************************
+
 //WAITER HOME
 Template.waiter_home.events({
     'click #newOrder': function () {
         Router.go('waiter_new_order');
     },
+    'click #allOrders': function () {
+        var orderListContainer = document.getElementById('orderListContainer');
+        orderListContainer.innerHTML = '';
+        Blaze.renderWithData(Template.order_list,{status: null},orderListContainer);
+    },
+    'click #notReadyOrders': function () {
+        var orderListContainer = document.getElementById('orderListContainer');
+        orderListContainer.innerHTML = '';
+        Blaze.renderWithData(Template.order_list,{status: 5},orderListContainer);
+    },
+    'click #readyOrders': function () {
+        
+    }
 });
 //----
 
@@ -94,7 +115,7 @@ Template.item_list.events({
         Router.go('waiter_home');
     },
     'click #submit_order': function () {
-        Meteor.call('addOrderFromWaiter',new_order.tableNo,new_order.menuItems,function (error) {
+        Meteor.call('addOrderFromWaiter',new_order.tableNo,new_order.menuItems,Meteor.userId(),function (error) {
             if(error!==undefined) {
                 new_order = {menuItems: []};
                 $('#errors').html(error.reason);
@@ -116,5 +137,31 @@ Template.item_list.events({
         }
     }
 });
+//----
 
-//--
+// ****STATUS CODE FOR ORDERS****
+// 0 - NOT READY
+// 1 - COOKING
+// 2 - READY
+// 3 - SERVED
+// 4 - BILLED
+// *****************************
+
+//ODER LIST
+Template.order_list.onCreated(function () {
+    var self = this;
+    self.autorun(function () {
+        self.subscribe('orders',Template.instance().data.status);
+    });
+});
+
+Template.order_list.helpers({
+    orders: ()=>{
+        if(Template.instance().data.status==null){
+            return Orders.find({});
+        }else{
+            return Orders.find({status: Template.instance().data.status});
+        }
+    }
+});
+//----

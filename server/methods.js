@@ -61,11 +61,12 @@ Meteor.methods({
     removeItemMenuFromAdmin:function(id){
         MenuItems.update(id, {$set: {"inMenu": false}});
     },
-    addOrderFromWaiter:function (tableNo, menuItems) {
+    addOrderFromWaiter:function (tableNo, menuItems, waiterId) {
         Orders.insert({
             tableNo: tableNo,
             menuItems: menuItems,
-            status: 0
+            status: 0,
+            waiterId: waiterId
         });
     }
 });

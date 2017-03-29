@@ -6,8 +6,8 @@ describe('user management', function () {
             resetDatabase();
         });
 
-        let username = "admin";
-        let password = "admin";
+        let username = "admin1";
+        let password = "admin1";
         let role = "admin";
         let name = "Thejan";
 

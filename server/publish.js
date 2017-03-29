@@ -13,3 +13,12 @@ Meteor.publish("itemsForCategory", function (id) {
 Meteor.publish("menuItems", function () {
     return MenuItems.find({});
 });
+
+Meteor.publish("orders",function (status) {
+    if(status==null){
+        console.log('hello');
+        return Orders.find({});
+    }else{
+        return Orders.find({status: status});
+    }
+});
