@@ -6,8 +6,8 @@ describe('user management', function () {
             resetDatabase();
         });
 
-        let username = "admin1";
-        let password = "admin1";
+        let username = "admin";
+        let password = "admin";
         let role = "admin";
         let name = "Thejan";
 
@@ -16,4 +16,4 @@ describe('user management', function () {
     })
 });
 
-//meteor test --driver-package=practicalmeteor:mocha
+//meteor test --driver-package=practicalmeteor:mocha --port 3100

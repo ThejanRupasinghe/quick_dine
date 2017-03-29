@@ -11,9 +11,9 @@ describe('user management', function () {
         let role = "admin";
         let name = "Thejan";
 
-        Meteor.apply('createUserFromAdmin',username,password,role,name);
+        Meteor.call('createUserFromAdmin',username,password,role,name);
 
     })
 });
 
-//meteor test --driver-package=practicalmeteor:mocha
+//meteor test --driver-package=practicalmeteor:mocha --port 3100
