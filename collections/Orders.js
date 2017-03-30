@@ -43,7 +43,7 @@ OrderSchema = new SimpleSchema({
     waiterId: {
         type: String,
         allowedValues: function () {
-            return Meteor.users.find({profile: {role: "waiter"}}).map(function (doc) {
+            return Meteor.users.find({'profile.role': "waiter"}).map(function (doc) {
                 return doc._id;
             })
         }

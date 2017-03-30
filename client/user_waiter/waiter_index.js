@@ -23,10 +23,12 @@ Template.waiter_home.events({
     'click #notReadyOrders': function () {
         var orderListContainer = document.getElementById('orderListContainer');
         orderListContainer.innerHTML = '';
-        Blaze.renderWithData(Template.order_list,{status: 5},orderListContainer);
+        Blaze.renderWithData(Template.order_list,{status: "0&1"},orderListContainer);
     },
     'click #readyOrders': function () {
-        
+        var orderListContainer = document.getElementById('orderListContainer');
+        orderListContainer.innerHTML = '';
+        Blaze.renderWithData(Template.order_list,{status: 2},orderListContainer)
     }
 });
 //----
@@ -151,17 +153,26 @@ Template.item_list.events({
 Template.order_list.onCreated(function () {
     var self = this;
     self.autorun(function () {
-        self.subscribe('orders',Template.instance().data.status);
+        self.subscribe('orders',null,Meteor.userId());
     });
 });
 
 Template.order_list.helpers({
     orders: ()=>{
-        if(Template.instance().data.status==null){
-            return Orders.find({});
+        var status = Template.instance().data.status;
+        if(status==null){
+            return Orders.find({waiterId: Meteor.userId()});
+        }else if(status=="0&1") {
+            return Orders.find({status: 0, waiterId: Meteor.userId()},{status: 1, waiterId: Meteor.userId()});
         }else{
-            return Orders.find({status: Template.instance().data.status});
+            return Orders.find({status: status, waiterId: Meteor.userId()});
         }
+    },
+    ready: function(status){
+        return status == 2;
+    },
+    notReady: function (status) {
+        return status==0 || status==1;
     }
 });
 //----
