@@ -41,9 +41,7 @@ Meteor.methods({
             MenuItems.insert({
                 name: name,
                 category: category,
-                unit_price: unit_price,
-                inMenu: true,
-                CreatedAt: new Date()
+                unit_price: unit_price
             });
         }
     },

@@ -152,7 +152,7 @@ Template.item_record.events({
     'click #remove-item': function(){
         if(confirm("Are you sure want to remove this item from menu ?")){
             Meteor.call('removeItemMenuFromAdmin',this.item._id);
-            alert("User deleted successfully !");
+            alert("Menu Item deleted successfully !");
         }
     }
 });

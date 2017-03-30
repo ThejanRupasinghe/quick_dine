@@ -30,7 +30,7 @@ MenuItemSchema = new SimpleSchema({
     },
     inMenu:{
         type: Boolean,
-        autoValue: function () {
+        defaultValue: function () {
             return true;
         }
     },
@@ -43,4 +43,4 @@ MenuItemSchema = new SimpleSchema({
 });
 
 //Categories.find({},{fields: "_id"}).map((e) => {return e._id;})
-// MenuItems.attachSchema(MenuItemSchema);
+MenuItems.attachSchema(MenuItemSchema);
