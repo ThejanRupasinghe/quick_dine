@@ -1,13 +1,39 @@
 <template name="order_list">
+
+    <style>
+        .btn-xlarge {
+            padding: 18px 28px;
+            font-size: 22px;
+            line-height: normal;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+        }
+    </style>
+
     <div class="row">
         {{#each order in orders}}
             {{#if ready order.status}}
-                <div class="well" style="background: #4c9808; font-weight: bolder; color: black; font-size: 20px">Table No: {{order.tableNo}}</div>
+                <div class="well" style="background: rgba(109,197,8,0.5); font-weight: bolder; color: black; font-size: 20px">
+                    <div class="row">
+                        <div class="col-md-2">
+                            Table No: {{order.tableNo}}
+                        </div>
+                        <div class="col-md-2 col-md-offset-7 text-center">
+                            <button type="button" class="btn btn-success btn-lg" style="font-weight: bolder; color: black; font-size: 20px"><span class="glyphicon glyphicon-ok"></span> SERVED</button>
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+        {{/each}}
+        {{#each order in orders}}
+            {{#if cooking order.status}}
+                <div class="well" style="background: rgba(255,255,0,0.53); font-weight: bolder; color: black; font-size: 20px">Table No: {{order.tableNo}}</div>
             {{/if}}
         {{/each}}
         {{#each order in orders}}
             {{#if notReady order.status}}
-                <div class="well" style="background: #007ea5; font-weight: bolder; color: black; font-size: 20px">Table No: {{order.tableNo}}</div>
+                <div class="well" style="background: rgba(255,0,0,0.58); font-weight: bolder; color: black; font-size: 20px">Table No: {{order.tableNo}}</div>
             {{/if}}
         {{/each}}
     </div>

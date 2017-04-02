@@ -157,6 +157,7 @@ Template.order_list.onCreated(function () {
     });
 });
 
+//TODO: take only today orders for waiter
 Template.order_list.helpers({
     orders: ()=>{
         var status = Template.instance().data.status;
@@ -172,7 +173,10 @@ Template.order_list.helpers({
         return status == 2;
     },
     notReady: function (status) {
-        return status==0 || status==1;
+        return status==0;
+    },
+    cooking: function (status) {
+        return status==1;
     }
 });
 //----
