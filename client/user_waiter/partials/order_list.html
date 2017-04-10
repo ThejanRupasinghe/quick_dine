@@ -12,6 +12,7 @@
     </style>
 
     <div class="row">
+
         {{#each order in orders}}
             {{#if ready order.status}}
                 <div class="well" style="background: rgba(109,197,8,0.5); font-weight: bolder; color: black; font-size: 20px">
@@ -26,15 +27,18 @@
                 </div>
             {{/if}}
         {{/each}}
+
         {{#each order in orders}}
             {{#if cooking order.status}}
                 <div class="well" style="background: rgba(255,255,0,0.53); font-weight: bolder; color: black; font-size: 20px">Table No: {{order.tableNo}}</div>
             {{/if}}
         {{/each}}
+
         {{#each order in orders}}
             {{#if notReady order.status}}
                 <div class="well" style="background: rgba(255,0,0,0.58); font-weight: bolder; color: black; font-size: 20px">Table No: {{order.tableNo}}</div>
             {{/if}}
         {{/each}}
+
     </div>
 </template>

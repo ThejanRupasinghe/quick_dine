@@ -23,11 +23,11 @@ Template.signup.events({
             }
         });
         if(role==='waiter'){
-            Router.go('waiter_index');
+            Router.go('waiter_home');
         }else if(role==='cashier') {
             Router.go('cashier_index');
         }else if(role==='kitchen') {
-            Router.go('kitchen_index');
+            Router.go('kitchen_home');
         }else if(role==='customer') {
             Router.go('customer_index');
         }else{
@@ -67,7 +67,7 @@ Template.signin.events({
                 }else if(role==='cashier') {
                     Router.go('cashier_index');
                 }else if(role==='kitchen') {
-                    Router.go('kitchen_index');
+                    Router.go('kitchen_home');
                 }else if(role==='customer') {
                     Router.go('customer_index');
                 }else{

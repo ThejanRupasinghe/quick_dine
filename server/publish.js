@@ -21,3 +21,11 @@ Meteor.publish("orders",function (status, waiterId) {
         return Orders.find({status: status, waiterId: waiterId});
     }
 });
+
+Meteor.publish("kitchenOrders",function (status) {
+    if(status==null){
+        return Orders.find({});
+    }else{
+        return Orders.find({status: status});
+    }
+});
