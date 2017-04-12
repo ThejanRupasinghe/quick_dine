@@ -28,6 +28,9 @@ MenuItemSchema = new SimpleSchema({
         type: Number,
         min: 1
     },
+    item_picture:{
+        type: Object
+    },
     inMenu:{
         type: Boolean,
         defaultValue: function () {

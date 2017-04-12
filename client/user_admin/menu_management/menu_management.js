@@ -13,11 +13,37 @@ Template.add_menu_items.helpers({
 });
 
 Template.add_menu_items.events({
+    'change #item_picture': function (event) {
+        event.preventDefault();
+        var img = document.getElementById('view_item_picture');
+        var file = event.target.files[0];
+
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onload = function(event){
+            var result = reader.result;
+            img.src = result;
+        };
+
+    },
     'submit #add_form': function(event) {
         event.preventDefault();
         var name = $('[name=name]').val();
         var category = $('[name=category]').val();
         var unit_price = $('[name=unit_price]').val();
+        var item_picture = document.getElementById('item_picture').files[0];
+
+        var reader = new FileReader(); //create a reader according to HTML5 File API
+        reader.readAsDataURL(item_picture);
+        reader.onload = function(event){
+            var result = reader.result; //assign the result, if you console.log(result), you get {}
+            var buffer = new Uint8Array(result);// convert to binary
+            // MyPix.insert({binary: result});
+        };
+
+        // reader.readAsArrayBuffer(item_picture); //read the file as arraybuffer
+        reader.readAsDataURL(item_picture);
 
         if(unit_price<1){
             $('#unit_price_group').addClass("has-error");
