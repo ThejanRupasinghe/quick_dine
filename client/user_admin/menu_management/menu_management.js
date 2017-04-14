@@ -3,76 +3,118 @@ Template.add_menu_items.onCreated(function () {
     var self = this;
     self.autorun(function () {
         self.subscribe('categories');
+        self.subscribe('menuItemPictures');
     });
 });
 
 Template.add_menu_items.helpers({
     categories: ()=>{
         return Categories.find({});
+    },
+    pictures: ()=>{
+        return MenuItemPictures.find({});
     }
 });
 
+var file_ok = false;
 Template.add_menu_items.events({
     'change #item_picture': function (event) {
         event.preventDefault();
         var img = document.getElementById('view_item_picture');
+        var file_error = $('[id=file_error]');
+        file_error.html("");
         var file = event.target.files[0];
 
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
+        var re = /(?:\.([^.]+))?$/;
+        var ext = re.exec(file.name)[1];
 
-        reader.onload = function(event){
-            var result = reader.result;
-            img.src = result;
-        };
+        if(ext=="jpg" || ext=="JPG"){
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
 
+            reader.onload = function(event){
+                var result = reader.result;
+                img.src = result;
+            };
+
+            file_ok=true;
+        }else{
+            img.removeAttribute("src");
+            file_error.html("Only .jpg or .JPG files");
+            file_ok=false;
+        }
     },
     'submit #add_form': function(event) {
         event.preventDefault();
         var name = $('[name=name]').val();
         var category = $('[name=category]').val();
         var unit_price = $('[name=unit_price]').val();
-        var item_picture = document.getElementById('item_picture').files[0];
+        var file = document.getElementById('item_picture').files[0];
+
+        //TRIED USING NORMAL BLOB TYPE IN MONGO DB
+        // item_picture = null;
+        //
+        // create_blob(file, function(blob_string) {
+        //     item_picture = blob_string;
+        // });
+        //
+        // function create_blob(file, callback) {
+        //     var reader = new FileReader();
+        //     reader.onload = function() { callback(reader.result) };
+        //     reader.readAsDataURL(file);
+        // }
+        //
+        // console.log(item_picture);
 
         var reader = new FileReader(); //create a reader according to HTML5 File API
-        reader.readAsDataURL(item_picture);
+
+        // let id;
+
         reader.onload = function(event){
-            var result = reader.result; //assign the result, if you console.log(result), you get {}
-            var buffer = new Uint8Array(result);// convert to binary
-            // MyPix.insert({binary: result});
+            var result_pic = reader.result; //assign the result, if you console.log(result), you get {}
+            // Meteor.call('addMenuItemPictureFromAdmin',result_pic,function (error, result) {
+            //     // console.log(result);
+            //     window.id = result;
+            // });
+            addItem(result_pic);
         };
 
-        // reader.readAsArrayBuffer(item_picture); //read the file as arraybuffer
-        reader.readAsDataURL(item_picture);
+        // console.log(id);
+        // reader.readAsArrayBuffer(file); //read the file as arraybuffer
+        reader.readAsDataURL(file);
 
-        if(unit_price<1){
-            $('#unit_price_group').addClass("has-error");
-            $('#unit_price_helper').html("Invalid Unit Price");
-            $('[name=unit_price]').val("");
-            $('[name=unit_price]').focus();
-            $('#name_group').removeClass("has-error");
-            $('#name_helper').html("");
-        }else{
-            if(confirm("Do you want to add this menu item ?")){
-                Meteor.call('addMenuItemFromAdmin',name,category,unit_price,function (error) {
-                    if(error !== undefined){
-                        $('#name_group').addClass("has-error");
-                        $('#name_helper').html(error.reason);
-                        $('[name=name]').val("");
-                        $('[name=name]').focus();
-                        $('#unit_price_group').removeClass("has-error");
-                        $('#unit_price_helper').html("");
-                    }else{
-                        $('[name=name]').val("");
-                        $('[name=unit_price]').val("");
-                        $('[name=name]').focus();
-                        $('#unit_price_group').removeClass("has-error");
-                        $('#unit_price_helper').html("");
-                        $('#name_group').removeClass("has-error");
-                        $('#name_helper').html("");
-                        alert("Menu Item added successfully");
-                    }
-                });
+        function addItem(item_picture) {
+
+
+            if (unit_price < 1) {
+                $('#unit_price_group').addClass("has-error");
+                $('#unit_price_helper').html("Invalid Unit Price");
+                $('[name=unit_price]').val("");
+                $('[name=unit_price]').focus();
+                $('#name_group').removeClass("has-error");
+                $('#name_helper').html("");
+            } else {
+                if (confirm("Do you want to add this menu item ?")) {
+                    Meteor.call('addMenuItemFromAdmin', name, category, unit_price, item_picture, function (error) {
+                        if (error !== undefined) {
+                            $('#name_group').addClass("has-error");
+                            $('#name_helper').html(error.reason);
+                            $('[name=name]').val("");
+                            $('[name=name]').focus();
+                            $('#unit_price_group').removeClass("has-error");
+                            $('#unit_price_helper').html("");
+                        } else {
+                            $('[name=name]').val("");
+                            $('[name=unit_price]').val("");
+                            $('[name=name]').focus();
+                            $('#unit_price_group').removeClass("has-error");
+                            $('#unit_price_helper').html("");
+                            $('#name_group').removeClass("has-error");
+                            $('#name_helper').html("");
+                            alert("Menu Item added successfully");
+                        }
+                    });
+                }
             }
         }
     }

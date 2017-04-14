@@ -19,7 +19,7 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">Add New Menu Item</h3>
                         </div>
-                        <form role="form" id="add_form">
+                        <form role="form" id="add_form" enctype="multipart/form-data">
                             <div class="box-body">
                                 <div class="form-group" id="name_group">
                                     <label for="name">Name:</label>
@@ -40,9 +40,10 @@
                                     <span class="help-block" id="unit_price_helper"></span>
                                 </div>
                                 <div class="form-group" id="item_picture_group">
-                                    <label for="item_picture">Food Item Picture:</label>
+                                    <label for="item_picture">Food Item Picture: (.jpg only)</label>
                                     <input id="item_picture" name="item_picture" type="file">
                                     <p class="help-block" id="item_picture_helper">Upload a picture of the food item</p>
+                                    <span class="help-block" style="color: red; font-weight: bold" id="file_error"></span>
                                 </div>
                                 <img id="view_item_picture" style="height: 200px; width: 250px"/>
                             </div>
@@ -52,6 +53,9 @@
                                 <button type="submit" class="btn btn-primary">ADD</button>
                             </div>
                         </form>
+                        {{#each pictures}}
+                            <img src="{{content}}" alt="pic">
+                        {{/each}}
                     </div>
                 </div>
             </div>

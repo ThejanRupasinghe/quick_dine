@@ -34,14 +34,15 @@ Meteor.methods({
         Categories.insert({name: 'Short Eats'});
         Categories.insert({name: 'Others'});
     },
-    addMenuItemFromAdmin: function (name,category,unit_price) {
+    addMenuItemFromAdmin: function (name,category,unit_price,item_picture) {
         if(MenuItems.findOne({name: name, category: category})){
             throw new Meteor.Error("not-unique", "This food item has added before");
         }else{
             MenuItems.insert({
                 name: name,
                 category: category,
-                unit_price: unit_price
+                unit_price: unit_price,
+                item_picture: item_picture
             });
         }
     },
@@ -66,5 +67,9 @@ Meteor.methods({
             status: 0,
             waiterId: waiterId
         });
+    },
+    addMenuItemPictureFromAdmin: function (content) {
+        var doc_id = MenuItemPictures.insert({content: content});
+        return doc_id;
     }
 });

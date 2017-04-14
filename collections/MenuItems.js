@@ -29,7 +29,7 @@ MenuItemSchema = new SimpleSchema({
         min: 1
     },
     item_picture:{
-        type: Object
+        type: String
     },
     inMenu:{
         type: Boolean,
@@ -46,4 +46,4 @@ MenuItemSchema = new SimpleSchema({
 });
 
 //Categories.find({},{fields: "_id"}).map((e) => {return e._id;})
-MenuItems.attachSchema(MenuItemSchema);
+// MenuItems.attachSchema(MenuItemSchema);
