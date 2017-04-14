@@ -42,7 +42,8 @@ Meteor.methods({
                 name: name,
                 category: category,
                 unit_price: unit_price,
-                item_picture: item_picture
+                item_picture: item_picture,
+                inMenu: true
             });
         }
     },

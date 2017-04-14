@@ -51,36 +51,14 @@ Template.add_menu_items.events({
         var unit_price = $('[name=unit_price]').val();
         var file = document.getElementById('item_picture').files[0];
 
-        //TRIED USING NORMAL BLOB TYPE IN MONGO DB
-        // item_picture = null;
-        //
-        // create_blob(file, function(blob_string) {
-        //     item_picture = blob_string;
-        // });
-        //
-        // function create_blob(file, callback) {
-        //     var reader = new FileReader();
-        //     reader.onload = function() { callback(reader.result) };
-        //     reader.readAsDataURL(file);
-        // }
-        //
-        // console.log(item_picture);
 
         var reader = new FileReader(); //create a reader according to HTML5 File API
 
-        // let id;
-
         reader.onload = function(event){
             var result_pic = reader.result; //assign the result, if you console.log(result), you get {}
-            // Meteor.call('addMenuItemPictureFromAdmin',result_pic,function (error, result) {
-            //     // console.log(result);
-            //     window.id = result;
-            // });
             addItem(result_pic);
         };
 
-        // console.log(id);
-        // reader.readAsArrayBuffer(file); //read the file as arraybuffer
         reader.readAsDataURL(file);
 
         function addItem(item_picture) {
@@ -106,7 +84,10 @@ Template.add_menu_items.events({
                         } else {
                             $('[name=name]').val("");
                             $('[name=unit_price]').val("");
+                            $('[name=item_picture]').val("");
                             $('[name=name]').focus();
+                            document.getElementById('view_item_picture').removeAttribute("src");
+                            $('[id=file_error]').html("");
                             $('#unit_price_group').removeClass("has-error");
                             $('#unit_price_helper').html("");
                             $('#name_group').removeClass("has-error");
