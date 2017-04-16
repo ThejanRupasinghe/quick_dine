@@ -153,7 +153,7 @@ Template.item_list.events({
 Template.order_list.onCreated(function () {
     var self = this;
     self.autorun(function () {
-        self.subscribe('orders',null,Meteor.userId());
+        self.subscribe('ordersByWaiter',null,Meteor.userId());
     });
 });
 

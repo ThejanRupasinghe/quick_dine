@@ -48,7 +48,6 @@ Meteor.methods({
         }
     },
     updateMenuItemFromAdmin:function (id,name,category,unit_price,item_picture) {
-        console.log(id);
         if(name==null){
             if(item_picture==null){
                 MenuItems.update(id,{$set: {"unit_price": unit_price}});

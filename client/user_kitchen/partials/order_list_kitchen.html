@@ -15,19 +15,21 @@
 
         {{#each order in orders}}
             {{#if toCook order.status}}
-                <div class="well" style="background: rgba(255,0,0,0.58); font-weight: bolder; color: black; font-size: 20px">
-                    <div class="row">
-                        <div class="col-md-2">
-                            Table No: {{order.tableNo}}
-                        </div>
-                        <div class="col-lg-2 col-lg-offset-7 text-center">
-                            <button type="button" class="btn btn-warning btn-lg"
-                                    style="font-weight: bolder; color: black; font-size: 20px"><span
-                                    class="glyphicon glyphicon-ok"></span> COOKING
-                            </button>
+                <a href="/kitchen/view_order/{{order._id}}">
+                    <div class="well" style="background: rgba(255,0,0,0.58); font-weight: bolder; color: black; font-size: 20px">
+                        <div class="row">
+                            <div class="col-md-2">
+                                Table No: {{order.tableNo}}
+                            </div>
+                            <!--<div class="col-lg-2 col-lg-offset-7 text-center">-->
+                                <!--<button type="button" class="btn btn-warning btn-lg"-->
+                                        <!--style="font-weight: bolder; color: black; font-size: 20px"><span-->
+                                        <!--class="glyphicon glyphicon-ok"></span> COOKING-->
+                                <!--</button>-->
+                            <!--</div>-->
                         </div>
                     </div>
-                </div>
+                </a>
             {{/if}}
         {{/each}}
 

@@ -14,7 +14,7 @@ Meteor.publish("menuItems", function () {
     return MenuItems.find({});
 });
 
-Meteor.publish("orders",function (status, waiterId) {
+Meteor.publish("ordersByWaiter",function (status, waiterId) {
     if(status==null){
         return Orders.find({waiterId: waiterId});
     }else{
@@ -22,7 +22,12 @@ Meteor.publish("orders",function (status, waiterId) {
     }
 });
 
-Meteor.publish("kitchenOrders",function (status) {
+Meteor.publish("orders", function () {
+    return Orders.find({});
+});
+
+Meteor.publish("ordersByStatus",function (status) {
+    //TODO: Reverse the order list
     if(status==null){
         return Orders.find({});
     }else{

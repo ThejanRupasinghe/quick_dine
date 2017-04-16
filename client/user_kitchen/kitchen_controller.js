@@ -35,7 +35,7 @@ Template.kitchen_home.events({
 Template.order_list_kitchen.onCreated(function () {
     var self = this;
     self.autorun(function () {
-        self.subscribe('kitchenOrders');
+        self.subscribe('ordersByStatus');
     });
 });
 

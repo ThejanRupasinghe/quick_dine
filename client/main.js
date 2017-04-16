@@ -7,6 +7,7 @@ Meteor.startup(function () {
     // <!-- jQuery 2.2.3 -->
     $.getScript("/admin/plugins/jQuery/jquery-2.2.3.min.js");
     // <!-- jQuery UI 1.11.4 -->
+    //TODO: Uncomment below line
     // $.getScript("https://code.jquery.com/ui/1.11.4/jquery-ui.min.js");
     // <!-- Bootstrap 3.3.6 -->
     $.getScript("/admin/bootstrap/js/bootstrap.min.js");
