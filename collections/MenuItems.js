@@ -46,4 +46,4 @@ MenuItemSchema = new SimpleSchema({
 });
 
 //Categories.find({},{fields: "_id"}).map((e) => {return e._id;})
-MenuItems.attachSchema(MenuItemSchema);
+// MenuItems.attachSchema(MenuItemSchema);

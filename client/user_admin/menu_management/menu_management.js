@@ -3,16 +3,12 @@ Template.add_menu_items.onCreated(function () {
     var self = this;
     self.autorun(function () {
         self.subscribe('categories');
-        self.subscribe('menuItemPictures');
     });
 });
 
 Template.add_menu_items.helpers({
     categories: ()=>{
         return Categories.find({});
-    },
-    pictures: ()=>{
-        return MenuItemPictures.find({});
     }
 });
 
@@ -20,6 +16,7 @@ var file_ok = false;
 Template.add_menu_items.events({
     'change #item_picture': function (event) {
         event.preventDefault();
+        file_ok = false;
         var img = document.getElementById('view_item_picture');
         var file_error = $('[id=file_error]');
         file_error.html("");
@@ -51,18 +48,22 @@ Template.add_menu_items.events({
         var unit_price = $('[name=unit_price]').val();
         var file = document.getElementById('item_picture').files[0];
 
+        if(file_ok){
 
-        var reader = new FileReader(); //create a reader according to HTML5 File API
+            var reader = new FileReader(); //create a reader according to HTML5 File API
 
-        reader.onload = function(event){
-            var result_pic = reader.result; //assign the result, if you console.log(result), you get {}
-            addItem(result_pic);
-        };
+            reader.onload = function(event){
+                var result_pic = reader.result; //assign the result, if you console.log(result), you get {}
+                addItem(result_pic);
+            };
 
-        reader.readAsDataURL(file);
+            reader.readAsDataURL(file);
+
+        }else{
+            alert("Invalid Food Item Picture");
+        }
 
         function addItem(item_picture) {
-
 
             if (unit_price < 1) {
                 $('#unit_price_group').addClass("has-error");
@@ -98,6 +99,7 @@ Template.add_menu_items.events({
                 }
             }
         }
+
     }
 });
 //----
@@ -147,6 +149,33 @@ Template.edit_item_form.helpers({
 });
 
 Template.edit_item_form.events({
+    'change #item_picture': function (event) {
+        event.preventDefault();
+        file_ok = false;
+        var img = document.getElementById('view_item_picture');
+        var file_error = $('[id=file_error]');
+        file_error.html("");
+        var file = event.target.files[0];
+
+        var re = /(?:\.([^.]+))?$/;
+        var ext = re.exec(file.name)[1];
+
+        if(ext=="jpg" || ext=="JPG"){
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+
+            reader.onload = function(event){
+                var result = reader.result;
+                img.src = result;
+            };
+
+            file_ok=true;
+        }else{
+            img.removeAttribute("src");
+            file_error.html("Only .jpg or .JPG files");
+            file_ok=false;
+        }
+    },
     'submit #edit_form': function(event){
         event.preventDefault();
         var id = $('[name=id]').val();
@@ -155,40 +184,67 @@ Template.edit_item_form.events({
         var current_category = $('[name=current_category]').val();
         var new_category = $('[name=new_category]').val();
         var unit_price = $('[name=unit_price]').val();
+        var file = document.getElementById('item_picture').files[0];
 
         if(confirm("Are you sure want to update this item ?")){
+
+            if(file!==undefined){
+                if(file_ok){
+
+                        var reader = new FileReader(); //create a reader according to HTML5 File API
+
+                        reader.onload = function(event){
+                            var result_pic = reader.result; //assign the result, if you console.log(result), you get {}
+                            updateItem(result_pic);
+                        };
+
+                        reader.readAsDataURL(file);
+
+                }else{
+                    alert("Invalid Food Item Picture");
+                }
+
+            }else if(file==undefined){
+                updateItem(null);
+            }
+
+        }
+
+        function updateItem(item_picture) {
+
             if(new_category===current_category || new_category==="null"){
                 if(current_name===new_name){
-                    Meteor.call('updateMenuItemFromAdmin',id,null,new_category,unit_price);
+                    Meteor.call('updateMenuItemFromAdmin',id,null,new_category,unit_price,item_picture);
                     alert("Menu Item updated successfully");
                     Router.go('admin_menu_edit');
                 }else{
-                    Meteor.call('updateMenuItemFromAdmin',id,new_name,current_category,unit_price,function (error) {
+                    Meteor.call('updateMenuItemFromAdmin',id,new_name,current_category,unit_price,item_picture, function (error) {
                         if(error!==undefined){
                             $('[name=new_name]').val("");
                             $('#name_group').addClass("has-error");
                             $('#name_helper').html(error.reason);
                         }else{
-                            Meteor.call('updateMenuItemFromAdmin',id,null,new_category,unit_price);
+                            Meteor.call('updateMenuItemFromAdmin',id,null,new_category,unit_price,item_picture);
                             alert("Menu Item updated successfully");
                             Router.go('admin_menu_edit');
                         }
                     });
                 }
             }else{
-                Meteor.call('updateMenuItemFromAdmin',id,new_name,new_category,unit_price,function (error) {
+                Meteor.call('updateMenuItemFromAdmin',id,new_name,new_category,unit_price,item_picture,function (error) {
                     if(error!==undefined){
                         $('[name=new_name]').val("");
                         $('#name_group').addClass("has-error");
                         $('#name_helper').html(error.reason);
                     }else{
-                        Meteor.call('updateMenuItemFromAdmin',id,null,new_category,unit_price);
+                        Meteor.call('updateMenuItemFromAdmin',id,null,new_category,unit_price,item_picture);
                         alert("Menu Item updated successfully");
                         Router.go('admin_menu_edit');
                     }
                 });
             }
         }
+
     },
     'click #cancel':function () {
         Router.go('admin_menu_edit');

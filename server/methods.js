@@ -47,14 +47,23 @@ Meteor.methods({
             });
         }
     },
-    updateMenuItemFromAdmin:function (id,name,category,unit_price) {
+    updateMenuItemFromAdmin:function (id,name,category,unit_price,item_picture) {
+        console.log(id);
         if(name==null){
-            MenuItems.update(id,{$set: {"unit_price": unit_price}});
+            if(item_picture==null){
+                MenuItems.update(id,{$set: {"unit_price": unit_price}});
+            }else{
+                MenuItems.update(id,{$set: {"unit_price": unit_price, "item_picture": item_picture}});
+            }
         }else{
             if(MenuItems.findOne({name: name, category: category})){
                 throw new Meteor.Error("not-unique", "This food item has added before");
-            }else {
-                MenuItems.update(id, {$set: {"name": name, "category": category, "unit_price": unit_price}});
+            }else{
+                if(item_picture==null){
+                    MenuItems.update(id, {$set: {"name": name, "category": category, "unit_price": unit_price}});
+                }else{
+                    MenuItems.update(id, {$set: {"name": name, "category": category, "unit_price": unit_price, "item_picture": item_picture}});
+                }
             }
         }
     },
@@ -68,9 +77,5 @@ Meteor.methods({
             status: 0,
             waiterId: waiterId
         });
-    },
-    addMenuItemPictureFromAdmin: function (content) {
-        var doc_id = MenuItemPictures.insert({content: content});
-        return doc_id;
     }
 });

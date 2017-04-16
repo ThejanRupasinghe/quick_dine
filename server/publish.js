@@ -14,10 +14,6 @@ Meteor.publish("menuItems", function () {
     return MenuItems.find({});
 });
 
-Meteor.publish("menuItemPictures", function () {
-   return MenuItemPictures.find({});
-});
-
 Meteor.publish("orders",function (status, waiterId) {
     if(status==null){
         return Orders.find({waiterId: waiterId});

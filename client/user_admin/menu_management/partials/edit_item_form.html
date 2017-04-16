@@ -48,10 +48,12 @@
                                 </div>
                                 <!--Previous picture here-->
                                 <div class="form-group" id="item_picture_group">
-                                    <label for="item_picture">Food Item Picture:</label>
+                                    <label for="item_picture">Food Item Picture: (Don't select for no change)</label>
                                     <input id="item_picture" name="item_picture" type="file">
-                                    <p class="help-block" id="item_picture_helper">Upload a picture of the food item</p>
+                                    <p class="help-block" id="item_picture_helper">Upload a new picture of the food item</p>
+                                    <span class="help-block" style="color: red; font-weight: bold" id="file_error"></span>
                                 </div>
+                                <img id="view_item_picture" src="{{menuItem.item_picture}}" style="height: 200px; width: 250px"/>
                                 <input type="hidden" name="id" id="id" value="{{menuItem._id}}">
                                 <input type="hidden" name="current_name" id="current_name" value="{{menuItem.name}}">
                             </div>
