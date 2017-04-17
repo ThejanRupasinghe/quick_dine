@@ -98,6 +98,7 @@ Template.menu_item_button.events({
             Blaze.renderWithData(Template.item_list,{new_order: new_order, tableNo: new_order.tableNo, submit: true},itemListContainer);
             console.log(new_order);
         }
+        $('#numberDisplay').html('');
     },
     'click #menu_item_btn': function(){
         $('#myModal').modal('show');
