@@ -64,8 +64,6 @@ Template.order_list_kitchen.events({
     'click .view-order-button': function(event){
         let id = event.target.value;
         let order = Orders.findOne({_id: id});
-        console.log(id);
-        console.log(order);
         BlazeLayout.render('kitchen_layout', {content: 'kitchen_view_order', data: order});
     }
 });

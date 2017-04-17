@@ -1,0 +1,30 @@
+<template name="cashier_home">
+
+    <style>
+        .btn-xlarge {
+            padding: 18px 28px;
+            color: black;
+            font-size: 22px;
+            line-height: normal;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+        }
+    </style>
+
+    <div class="row">
+        <div class="col-lg-3 btn btn-info btn-xlarge" id="newButton">
+            <strong>NEW</strong>
+        </div>
+        <div class="col-lg-3 col-lg-offset-1 btn btn-danger btn-xlarge" id="billedButton">
+            <strong>BILLED</strong>
+        </div>
+    </div>
+
+    <hr>
+
+    <div id="orderListContainer">
+        {{> Template.dynamic template=order_list}}
+    </div>
+
+</template>

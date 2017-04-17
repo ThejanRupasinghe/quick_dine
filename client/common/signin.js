@@ -25,7 +25,7 @@ Template.signup.events({
         if(role==='waiter'){
             Router.go('waiter_home');
         }else if(role==='cashier') {
-            Router.go('cashier_index');
+            Router.go('cashier_home');
         }else if(role==='kitchen') {
             Router.go('kitchen_home');
         }else if(role==='customer') {
@@ -65,7 +65,7 @@ Template.signin.events({
                 if(role==='waiter'){
                     Router.go('waiter_home');
                 }else if(role==='cashier') {
-                    Router.go('cashier_index');
+                    Router.go('cashier_home');
                 }else if(role==='kitchen') {
                     Router.go('kitchen_home');
                 }else if(role==='customer') {
