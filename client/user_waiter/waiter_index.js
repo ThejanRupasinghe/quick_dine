@@ -179,4 +179,28 @@ Template.order_list.helpers({
         return status==1;
     }
 });
+
+Template.order_list.events({
+    'click .view-order-button': function(event){
+        let id = event.target.value;
+        let order = Orders.findOne({_id: id});
+        console.log(id);
+        console.log(order);
+        BlazeLayout.render('waiter_layout', {content: 'waiter_view_order', data: order});
+    },
+    'click .served-order-button': function (event) {
+        let id = event.target.value;
+        Meteor.call("changeOrderStatus", id, 3);
+        BlazeLayout.render('waiter_layout',{content: 'waiter_home',order_list: 'order_list'});
+    }
+});
+//----
+
+//WAITER VIEW ORDER
+Template.waiter_view_order.events({
+    'click #back': function (event) {
+        event.preventDefault();
+        BlazeLayout.render('waiter_layout',{content: 'waiter_home',order_list: 'order_list'});
+    }
+});
 //----

@@ -1,4 +1,4 @@
-<template name="kitchen_view_order">
+<template name="waiter_view_order">
 
     <style>
         .btn-xlarge {
@@ -11,7 +11,7 @@
         }
     </style>
 
-    <div class="col-lg-6 col-lg-offset-3" style="padding-top: 3%">
+    <div class="col-md-6 col-md-offset-3" style="padding-top: 3%">
         <div class="well" style="padding-top: 5px">
             <span class="text-center">
                 <h2><strong>New Order - Table {{data.tableNo}}</strong></h2>
@@ -25,15 +25,8 @@
             {{/each}}
             <div class="row text-center">
                 <button class="btn btn-primary btn-xlarge" id="back">BACK</button>
-                {{#if notReady data.status}}
-                    <button class="btn btn-warning btn-xlarge" id="cooking" value="{{data._id}}"><span
-                        class="glyphicon glyphicon-ok"></span>&nbsp;COOKING</button>
-                {{/if}}
-                {{#if cooking data.status}}
-                    <button class="btn btn-success btn-xlarge" id="ready" value="{{data._id}}"><span
-                            class="glyphicon glyphicon-ok"></span>&nbsp;READY</button>
-                {{/if}}
             </div>
         </div>
     </div>
+
 </template>

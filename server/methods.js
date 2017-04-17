@@ -85,7 +85,7 @@ Meteor.methods({
             waiterId: waiterId
         });
     },
-    changeOrderStatusFromKitchen: function (id, status) {
+    changeOrderStatus: function (id, status) {
         Orders.update(id, {$set: {status: status}});
     }
 });

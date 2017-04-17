@@ -20,8 +20,12 @@
                         <div class="col-md-2">
                             Table No: {{order.tableNo}}
                         </div>
-                        <div class="col-md-2 col-md-offset-7 text-center">
-                            <button id="servedButton" type="button" class="btn btn-success btn-lg" style="font-weight: bolder; color: black; font-size: 20px"><span class="glyphicon glyphicon-ok"></span> SERVED</button>
+                        <div class="col-md-4 col-md-offset-6 text-center">
+                            <button value="{{order._id}}" id="servedButton" type="button" class="btn btn-success btn-lg served-order-button" style="font-weight: bolder; color: black; font-size: 20px"><span class="glyphicon glyphicon-ok"></span> SERVED</button>
+                            <button type="button" class="btn btn-info btn-lg view-order-button"
+                                    style="font-weight: bolder; color: black; font-size: 20px" value="{{order._id}}"><span
+                                    class="glyphicon glyphicon-list-alt"></span> VIEW
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -30,13 +34,37 @@
 
         {{#each order in orders}}
             {{#if cooking order.status}}
-                <div class="well" style="background: rgba(226,181,0,0.65); font-weight: bolder; color: black; font-size: 20px">Table No: {{order.tableNo}}</div>
+                <div class="well" style="background: rgba(226,181,0,0.65); font-weight: bolder; color: black; font-size: 20px">
+                    <div class="row">
+                        <div class="col-md-2">
+                            Table No: {{order.tableNo}}
+                        </div>
+                        <div class="col-md-1 col-md-offset-8 text-center">
+                            <button type="button" class="btn btn-info btn-lg view-order-button"
+                                    style="font-weight: bolder; color: black; font-size: 20px" value="{{order._id}}"><span
+                                    class="glyphicon glyphicon-list-alt"></span> VIEW
+                            </button>
+                        </div>
+                    </div>
+                </div>
             {{/if}}
         {{/each}}
 
         {{#each order in orders}}
             {{#if notReady order.status}}
-                <div class="well" style="background: rgba(255,0,0,0.58); font-weight: bolder; color: black; font-size: 20px">Table No: {{order.tableNo}}</div>
+                <div class="well" style="background: rgba(255,0,0,0.58); font-weight: bolder; color: black; font-size: 20px">
+                    <div class="row">
+                        <div class="col-md-2">
+                            Table No: {{order.tableNo}}
+                        </div>
+                        <div class="col-md-1 col-md-offset-8 text-center">
+                            <button type="button" class="btn btn-info btn-lg view-order-button"
+                                    style="font-weight: bolder; color: black; font-size: 20px" value="{{order._id}}"><span
+                                    class="glyphicon glyphicon-list-alt"></span> VIEW
+                            </button>
+                        </div>
+                    </div>
+                </div>
             {{/if}}
         {{/each}}
 

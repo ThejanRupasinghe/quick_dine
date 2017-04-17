@@ -75,17 +75,16 @@ Template.order_list_kitchen.events({
 Template.kitchen_view_order.events({
     'click #back': function(event){
         event.preventDefault();
-        console.log("hey");
         BlazeLayout.render('kitchen_layout',{content: 'kitchen_home',order_list: 'order_list_kitchen'});
     },
     'click #cooking': function(event){
         let id = event.target.value;
-        Meteor.call("changeOrderStatusFromKitchen", id, 1);
+        Meteor.call("changeOrderStatus", id, 1);
         BlazeLayout.render('kitchen_layout',{content: 'kitchen_home',order_list: 'order_list_kitchen'});
     },
     'click #ready': function(event){
         let id = event.target.value;
-        Meteor.call("changeOrderStatusFromKitchen", id, 2);
+        Meteor.call("changeOrderStatus", id, 2);
         BlazeLayout.render('kitchen_layout',{content: 'kitchen_home',order_list: 'order_list_kitchen'});
     }
 });
