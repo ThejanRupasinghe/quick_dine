@@ -26,9 +26,9 @@ Meteor.startup(function () {
     // <!-- datepicker -->
     // $.getScript("/admin/plugins/datepicker/bootstrap-datepicker.js");
     // <!-- Slimscroll -->
-    $.getScript("/admin/plugins/slimScroll/jquery.slimscroll.min.js");
+    // $.getScript("/admin/plugins/slimScroll/jquery.slimscroll.min.js");
     // <!-- FastClick -->
-    $.getScript("/admin/plugins/fastclick/fastclick.js");
+    // $.getScript("/admin/plugins/fastclick/fastclick.js");
     // <!-- AdminLTE App -->
     $.getScript("/admin/dist/js/app.min.js");
 });
