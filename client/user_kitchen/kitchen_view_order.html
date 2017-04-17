@@ -1,27 +1,39 @@
 <template name="kitchen_view_order">
-    <div class="col-lg-5">
+
+    <style>
+        .btn-xlarge {
+            padding: 18px 28px;
+            font-size: 22px;
+            line-height: normal;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+        }
+    </style>
+
+    <div class="col-lg-6 col-lg-offset-3" style="padding-top: 3%">
         <div class="well" style="padding-top: 5px">
             <span class="text-center">
-                <h3><strong>New Order - {{order.tableNo}}</strong></h3>
+                <h2><strong>New Order - Table {{data.tableNo}}</strong></h2>
             </span>
-            <!--{{#each new_order.menuItems}}-->
-                <!--<div class="well" style="background: #96e7ff">-->
-                    <!--<div class="text-center">-->
-                        <!--<strong>{{name}} - {{quantity}}</strong>-->
-
-                        <!--<button type="button" class="btn btn-sm btn-danger removeItem" value="{{@index}}">-->
-                            <!--<span class="glyphicon glyphicon-remove"></span>&nbsp;-->
-                        <!--</button>-->
-                    <!--</div>-->
-
-                <!--</div>-->
-            <!--{{/each}}-->
-            <!--<div class="row text-center">-->
-                <!--{{#if submit}}-->
-                    <!--<div class="btn btn-success btn-lg" id="submit_order">Submit</div>-->
-                <!--{{/if}}-->
-                <!--<div class="btn btn-info btn-lg" id="cancel_order">Cancel</div>-->
-            <!--</div>-->
+            {{#each data.menuItems}}
+                <div class="well" style="background: #96e7ff">
+                    <div class="text-center">
+                        <h4><strong>{{name}} - {{quantity}}</strong></h4>
+                    </div>
+                </div>
+            {{/each}}
+            <div class="row text-center">
+                <button class="btn btn-primary btn-xlarge" id="back">BACK</button>
+                {{#if notReady data.status}}
+                    <button class="btn btn-warning btn-xlarge" id="cooking" value="{{data._id}}"><span
+                        class="glyphicon glyphicon-ok"></span>COOKING</button>
+                {{/if}}
+                {{#if cooking data.status}}
+                    <button class="btn btn-success btn-xlarge" id="ready" value="{{data._id}}"><span
+                            class="glyphicon glyphicon-ok"></span>READY</button>
+                {{/if}}
+            </div>
         </div>
     </div>
 </template>

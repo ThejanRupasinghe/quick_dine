@@ -1,3 +1,11 @@
+// ****STATUS CODE FOR ORDERS****
+// 0 - NOT READY
+// 1 - COOKING
+// 2 - READY
+// 3 - SERVED
+// 4 - BILLED
+// *****************************
+
 Meteor.methods({
     getUser : function() {
         var userRec = {};
@@ -76,5 +84,8 @@ Meteor.methods({
             status: 0,
             waiterId: waiterId
         });
+    },
+    changeOrderStatusFromKitchen: function (id, status) {
+        Orders.update(id, {$set: {status: status}});
     }
 });
