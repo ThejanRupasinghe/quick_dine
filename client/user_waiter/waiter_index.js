@@ -164,7 +164,7 @@ Template.order_list.helpers({
         if(status==null){
             return Orders.find({waiterId: Meteor.userId()});
         }else if(status=="0&1") {
-            return Orders.find({status: 0, waiterId: Meteor.userId()},{status: 1, waiterId: Meteor.userId()});
+            return Orders.find({status: { $in: [0, 1] }, waiterId: Meteor.userId()});
         }else{
             return Orders.find({status: status, waiterId: Meteor.userId()});
         }
