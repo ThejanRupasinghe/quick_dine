@@ -43,21 +43,17 @@
 					<th width="120px">Unit Price (Rs.)</th>
 					<th width="120px">Amount (Rs.) </th>
 				</tr>
-				<tr>
-					<td style="text-align: center">String Hoppers</td>
-					<td style="text-align: center">40</td>
-					<td style="text-align: right">3.00&nbsp;</td>
-					<td style="text-align: right">120.00&nbsp;</td>
-				</tr>
-				<tr>
-					<td style="text-align: center">Plain Tea</td>
-					<td style="text-align: center">2</td>
-					<td style="text-align: right">15.00&nbsp;</td>
-					<td style="text-align: right">30.00&nbsp;</td>
-				</tr>
+				{{#each data.menuItems}}
+					<tr>
+						<td style="text-align: center">{{name}}</td>
+						<td style="text-align: center">{{quantity}}</td>
+						<td style="text-align: right">{{unit_price}}.00&nbsp;</td>
+						<td style="text-align: right">{{eachAmount unit_price quantity}}.00&nbsp;</td>
+					</tr>
+				{{/each}}
 				<tr>
 					<th colspan="3">Total</th>
-					<td style="text-align: right">150.00&nbsp;</td>
+					<td style="text-align: right">{{data.total}}.00&nbsp;</td>
 				</tr>
 				<tr>
 					<th colspan="3">Payment</th>

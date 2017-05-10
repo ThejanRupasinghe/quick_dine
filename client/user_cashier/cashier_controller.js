@@ -48,13 +48,29 @@ Template.order_list_cashier.helpers({
     }
 });
 
+let passOrder;
 Template.order_list_cashier.events({
     'click .bill-order-button': function(event){
         let id = event.target.value;
         let order = Orders.findOne({_id: id});
         // console.log(id);
         // console.log(order);
-        BlazeLayout.render('cashier_layout', {content: 'bill_order_cashier', data: order});
+
+        passOrder = {_id: order._id, tableNo: order.tableNo, menuItems: []};
+        let total=0;
+
+        for (var index in order.menuItems){
+            var item = order.menuItems[index];
+            var item_details = MenuItems.findOne({_id: item.item_id},{fields: {name:1, unit_price:1}});
+
+            passOrder.menuItems.push({name: item_details.name, quantity: item.quantity, unit_price: item_details.unit_price});
+
+            total+=item.quantity*item_details.unit_price;
+        }
+
+        passOrder.total = total;
+
+        BlazeLayout.render('cashier_layout', {content: 'bill_order_cashier', data: passOrder});
     }
 });
 //----
@@ -70,9 +86,13 @@ Template.bill_order_cashier.helpers({
     },
     billNo: function () {
         return ;
+    },
+    eachAmount: function(unit_price,quantity){
+        return unit_price*quantity;
     }
 });
 
+let payment;
 Template.bill_order_cashier.events({
     'click .numberButton': function(event){
         $("#numberDisplay").append(event.target.textContent.trim());
@@ -81,13 +101,20 @@ Template.bill_order_cashier.events({
         $('#numberDisplay').html('');
     },
     'click .enterButton': function(){
-        let quantity = parseInt($("#numberDisplay").html().trim());
-        if(isNaN(quantity) || quantity==0){
+        payment = parseInt($("#numberDisplay").html().trim());
+        if(isNaN(payment) || payment==0 || payment<passOrder.total){
 
         }else{
-           $('#payment').html(quantity+'.00&nbsp');
+           $('#payment').html(payment+'.00&nbsp');
+           $('#balance').html((payment-passOrder.total)+'.00&nbsp');
         }
         $('#numberDisplay').html('');
+    },
+    'click #submitButton': function(){
+        var orderId = passOrder._id;
+        var total = passOrder.total;
+
+        Meteor.call('addBillFromCashier', );
     }
 });
 //----
