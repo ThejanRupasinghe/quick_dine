@@ -88,8 +88,14 @@ Meteor.methods({
     changeOrderStatus: function (id, status) {
         Orders.update(id, {$set: {status: status}});
     },
-    addBillFromCashier: function(){
-        
+    addBillFromCashier: function(orderId, total, payment, balance, cashierId){
+        Bills.insert({
+            orderId: orderId,
+            total: total,
+            payment: payment,
+            balance: balance,
+            cashierId: cashierId
+        });
     }
     // findItemName: function (item_id) {
     //     console.log(item_id);

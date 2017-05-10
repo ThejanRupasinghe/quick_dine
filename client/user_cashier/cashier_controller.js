@@ -114,7 +114,20 @@ Template.bill_order_cashier.events({
         var orderId = passOrder._id;
         var total = passOrder.total;
 
-        Meteor.call('addBillFromCashier', );
+        if(isNaN(payment) || payment==0 || payment<passOrder.total){
+
+        }else{
+            var balance = payment - total;
+
+            Meteor.call('addBillFromCashier', orderId, total, payment, balance, Meteor.userId(),function(error){
+                if(error!==undefined){
+                   
+                }else{
+                    Meteor.call('changeOrderStatus', orderId, 4);
+                    BlazeLayout.render('cashier_layout',{content: 'cashier_home', order_list: 'order_list_cashier'});
+                }
+            });  
+        }
     }
 });
 //----
