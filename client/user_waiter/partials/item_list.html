@@ -8,7 +8,7 @@
             {{#each new_order.menuItems}}
                 <div class="well" style="background: #96e7ff">
                     <div class="text-center">
-                        <strong>{{name}} - {{quantity}}</strong>
+                        <strong>{{findName item_id}} - {{quantity}}</strong>
 
                         <button type="button" class="btn btn-sm btn-danger removeItem" value="{{@index}}">
                             <span class="glyphicon glyphicon-remove"></span>&nbsp;

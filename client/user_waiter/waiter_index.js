@@ -91,7 +91,7 @@ Template.menu_item_button.events({
         if(isNaN(quantity) || quantity==0){
             $('#myModal').modal('hide');
         }else{
-            new_order.menuItems.push({name: clicked_item, quantity: quantity});
+            new_order.menuItems.push({item_id: clicked_item, quantity: quantity});
             $('#myModal').modal('hide');
             var itemListContainer = document.getElementById('itemListContainer');
             itemListContainer.innerHTML = '';
@@ -102,7 +102,8 @@ Template.menu_item_button.events({
     },
     'click #menu_item_btn': function(){
         $('#myModal').modal('show');
-        clicked_item = this.name;
+        // clicked_item = this.name;
+        clicked_item = this._id;
     },
     'click #cancelMenuItem':function () {
         $('#numberDisplay').html('');
@@ -140,6 +141,12 @@ Template.item_list.events({
         }
     }
 });
+
+Template.item_list.helpers({
+    findName: function (item_id) {
+        return MenuItems.findOne({_id: item_id},{fields: {name:1}}).name;
+    }
+});
 //----
 
 // ****STATUS CODE FOR ORDERS****
@@ -155,6 +162,7 @@ Template.order_list.onCreated(function () {
     var self = this;
     self.autorun(function () {
         self.subscribe('ordersByWaiter',null,Meteor.userId());
+        self.subscribe('menuItems');
     });
 });
 
@@ -185,9 +193,34 @@ Template.order_list.events({
     'click .view-order-button': function(event){
         let id = event.target.value;
         let order = Orders.findOne({_id: id});
-        console.log(id);
-        console.log(order);
-        BlazeLayout.render('waiter_layout', {content: 'waiter_view_order', data: order});
+        // console.log(id);
+        // console.log(order);
+
+        let passOrder = {tableNo: order.tableNo, menuItems: []};
+
+        for (var index in order.menuItems){
+            var item = order.menuItems[index];
+            var name = MenuItems.findOne({_id: item.item_id},{fields: {name:1}}).name;
+
+            passOrder.menuItems.push({name: name,quantity: item.quantity});
+
+            // TRYING TO USE METEOR METHODS TO FIND INSTEAD OF SUBSCRIBING
+            /**
+            var that=this;
+            Meteor.call("findItemName",item.item_id,function(error,name){
+                // var item_names = _.clone(Session.get('names').slice());
+                // Session.set('names',item_names);
+                // Session.set('name',name);
+                // console.log("call"+Session.get('name'));
+                // that.
+                // this.passOrder
+            }).bind(this);
+            // console.log(Session.get('name'));
+            **/
+        }
+
+        // console.log(passOrder);
+        BlazeLayout.render('waiter_layout', {content: 'waiter_view_order', data: passOrder});
     },
     'click .served-order-button': function (event) {
         let id = event.target.value;

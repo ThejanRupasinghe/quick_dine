@@ -88,4 +88,10 @@ Meteor.methods({
     changeOrderStatus: function (id, status) {
         Orders.update(id, {$set: {status: status}});
     }
+    // findItemName: function (item_id) {
+    //     console.log(item_id);
+    //     let menuItem = MenuItems.findOne({_id: item_id},{fields : {name:1}});
+    //     console.log(menuItem);
+    //     return menuItem.name;
+    // }
 });

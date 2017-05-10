@@ -36,6 +36,7 @@ Template.order_list_kitchen.onCreated(function () {
     var self = this;
     self.autorun(function () {
         self.subscribe('ordersByStatus');
+        self.subscribe('menuItems');
     });
 });
 
@@ -64,7 +65,17 @@ Template.order_list_kitchen.events({
     'click .view-order-button': function(event){
         let id = event.target.value;
         let order = Orders.findOne({_id: id});
-        BlazeLayout.render('kitchen_layout', {content: 'kitchen_view_order', data: order});
+
+        let passOrder = {_id: order._id, tableNo: order.tableNo, menuItems: [], status: order.status};
+
+        for (var index in order.menuItems){
+            var item = order.menuItems[index];
+            var name = MenuItems.findOne({_id: item.item_id},{fields: {name:1}}).name;
+
+            passOrder.menuItems.push({name: name,quantity: item.quantity});
+        }
+
+        BlazeLayout.render('kitchen_layout', {content: 'kitchen_view_order', data: passOrder});
     }
 });
 //----

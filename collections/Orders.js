@@ -30,8 +30,13 @@ OrderSchema = new SimpleSchema({
     "menuItems.$": {
         type: Object
     },
-    "menuItems.$.name": {
-        type: String
+    "menuItems.$.item_id": {
+        type: String,
+        allowedValues: function () {
+            return MenuItems.find().map(function (doc) {
+                return doc._id;
+            })
+        }
     },
     "menuItems.$.quantity": {
         type: Number
