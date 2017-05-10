@@ -26,6 +26,7 @@ Template.order_list_cashier.onCreated(function () {
     var self = this;
     self.autorun(function () {
         self.subscribe('ordersByStatus');
+        self.subscribe('menuItems');
     });
 });
 
@@ -48,12 +49,45 @@ Template.order_list_cashier.helpers({
 });
 
 Template.order_list_cashier.events({
-    'click .view-order-button': function(event){
-        // let id = event.target.value;
-        // let order = Orders.findOne({_id: id});
+    'click .bill-order-button': function(event){
+        let id = event.target.value;
+        let order = Orders.findOne({_id: id});
         // console.log(id);
         // console.log(order);
-        // BlazeLayout.render('kitchen_layout', {content: 'kitchen_view_order', data: order});
+        BlazeLayout.render('cashier_layout', {content: 'bill_order_cashier', data: order});
+    }
+});
+//----
+
+//BILL ORDER CASHIER
+Template.bill_order_cashier.helpers({
+    billDate: function(){
+        n =  new Date();
+        y = n.getFullYear();
+        m = n.getMonth() + 1;
+        d = n.getDate();
+        return d + " - " + m + " - " + y;
+    },
+    billNo: function () {
+        return ;
+    }
+});
+
+Template.bill_order_cashier.events({
+    'click .numberButton': function(event){
+        $("#numberDisplay").append(event.target.textContent.trim());
+    },
+    'click .clearButton': function () {
+        $('#numberDisplay').html('');
+    },
+    'click .enterButton': function(){
+        let quantity = parseInt($("#numberDisplay").html().trim());
+        if(isNaN(quantity) || quantity==0){
+
+        }else{
+           $('#payment').html(quantity+'.00&nbsp');
+        }
+        $('#numberDisplay').html('');
     }
 });
 //----

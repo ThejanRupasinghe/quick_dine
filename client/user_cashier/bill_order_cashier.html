@@ -1,0 +1,148 @@
+<template name="bill_order_cashier">
+
+	<style type="text/css">
+		th{
+			text-align: center;
+			
+		}
+		th, td{
+			height:30px;
+		}
+		.numberButton, .clearButton, .enterButton, #submitButton{
+            padding: 18px 28px;
+            font-size: 22px;
+            line-height: normal;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+        }
+	</style>
+
+	<div class="row">
+
+		<div class="col-lg-6 well">
+			<div class="text-center">
+				<!-- <img src="/images/logo.jpg" style="height: 60px; width: auto;"> -->
+				<h3>Quick Dine</h3>
+				<h4>Tel No: 077-9020962</h4>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-lg-3">
+					<span style="font-size: 17px; font-weight: bold;">&nbsp;Bill No: </span>
+				</div>
+				<div class="col-lg-4 col-lg-offset-3">
+					<span style="font-size: 17px; font-weight: bold;">&nbsp;Date: {{billDate}}</span>
+				</div>
+			</div>
+			<br>	
+			<table border="1">
+				<tr>
+					<th width="220px">Food Item</th>
+					<th width="80px" >Quantity</th>
+					<th width="120px">Unit Price (Rs.)</th>
+					<th width="120px">Amount (Rs.) </th>
+				</tr>
+				<tr>
+					<td style="text-align: center">String Hoppers</td>
+					<td style="text-align: center">40</td>
+					<td style="text-align: right">3.00&nbsp;</td>
+					<td style="text-align: right">120.00&nbsp;</td>
+				</tr>
+				<tr>
+					<td style="text-align: center">Plain Tea</td>
+					<td style="text-align: center">2</td>
+					<td style="text-align: right">15.00&nbsp;</td>
+					<td style="text-align: right">30.00&nbsp;</td>
+				</tr>
+				<tr>
+					<th colspan="3">Total</th>
+					<td style="text-align: right">150.00&nbsp;</td>
+				</tr>
+				<tr>
+					<th colspan="3">Payment</th>
+					<th style="text-align: right" id="payment"></th>
+				</tr>
+				<tr>
+					<th colspan="3">Balance</th>
+					<td style="text-align: right" id="balance"></td>
+				</tr>
+			</table>
+			<br><br>
+			<div class="row text-center">
+				THANK YOU FOR DINING WITH US<br>PLEASE COME AGAIN 
+			</div>	
+		</div>
+
+		<div class="col-lg-5 well" style="margin-left: 30px; width: 45%">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="well text-center" id="numberDisplay" style="font-weight: bold;font-size: 25px;padding: 5px;">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-2 col-md-offset-2 btn btn-primary btn-lg text-center numberButton">
+					<strong>1</strong>
+				</div>
+				<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center numberButton">
+					<strong>2</strong>
+				</div>
+				<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center numberButton">
+					<strong>3</strong>
+				</div>
+			</div>
+
+			<br>
+
+			<div class="row">
+				<div class="col-md-2 col-md-offset-2 btn btn-primary btn-lg text-center numberButton">
+					<strong>4</strong>
+				</div>
+				<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center numberButton">
+					<strong>5</strong>
+				</div>
+				<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center numberButton">
+					<strong>6</strong>
+				</div>
+			</div>
+
+            <br>
+
+			<div class="row">
+				<div class="col-md-2 col-md-offset-2 btn btn-primary btn-lg text-center numberButton">
+					<strong>7</strong>
+				</div>
+				<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center numberButton">
+					<strong>8</strong>
+				</div>
+				<div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center numberButton">
+					<strong>9</strong>
+				</div>
+			</div>
+
+            <br>
+
+            <div class="row">
+            	<div class="col-md-2 col-md-offset-2 btn btn-primary btn-lg text-center clearButton">
+                    <strong>C</strong>
+                </div>
+                <div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center numberButton">
+                    <strong>0</strong>
+                </div>
+                <div class="col-md-2 col-md-offset-1 btn btn-primary btn-lg text-center enterButton">
+                    <strong>↵</strong>
+                </div>
+            </div>	
+		</div>
+
+	</div>
+
+	<div class="row text-center">
+		<div class="btn btn-success text-center" id="submitButton">
+					<strong>SUBMIT AND PRINT</strong>
+		</div>
+	</div>
+
+</template>
