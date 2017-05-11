@@ -11,7 +11,10 @@ Template.admin_index.onRendered(function () {
     $.getScript("/admin/dist/js/app.min.js");
 });
 
-
-
-
-
+Template.dashboard.onCreated(function () {
+    var self = this;
+    self.autorun(function () {
+        self.subscribe('users');
+        self.subscribe('orders');
+    });
+});
