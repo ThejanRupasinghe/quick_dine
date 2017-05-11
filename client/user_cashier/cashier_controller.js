@@ -123,8 +123,24 @@ Template.bill_order_cashier.events({
                 if(error!==undefined){
                    
                 }else{
-                    Meteor.call('changeOrderStatus', orderId, 4);
-                    BlazeLayout.render('cashier_layout',{content: 'cashier_home', order_list: 'order_list_cashier'});
+                    Meteor.call('changeOrderStatus', orderId, 4, function(error){
+                        if(error!==undefined){
+
+                        }else{
+
+                            var prtContent = document.getElementById("bill");
+                            var WinPrint = window.open('', '', 'left=10,top=0,width=550,height=580,toolbar=0,scrollbars=0,status=0');
+                            WinPrint.document.write('<link rel="stylesheet" href="/css/bootstrap.min.css">');
+                            WinPrint.document.write('<style type="text/css">th{text-align: center;}th,td{height:30px;}</style>');
+                            WinPrint.document.write(prtContent.innerHTML);
+                            WinPrint.document.close();
+                            WinPrint.focus();
+                            WinPrint.print();
+                            WinPrint.close(); 
+
+                            BlazeLayout.render('cashier_layout',{content: 'cashier_home', order_list: 'order_list_cashier'});
+                        }
+                    });
                 }
             });  
         }
