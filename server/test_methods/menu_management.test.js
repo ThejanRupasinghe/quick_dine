@@ -1,7 +1,7 @@
 import {resetDatabase} from 'meteor/xolvio:cleaner';
 
-describe('menu management', function () {
-    it('method adds a menu item', function () {
+describe('create menu item', function () {
+    it('method adds a menu item from admin', function () {
         beforeEach(function () {
             resetDatabase();
         });

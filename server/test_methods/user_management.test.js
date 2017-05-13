@@ -1,7 +1,7 @@
 import {resetDatabase} from 'meteor/xolvio:cleaner';
 
-describe('user management', function () {
-    it('method creates a user', function () {
+describe('create user', function () {
+    it('method creates a user from admin', function () {
         beforeEach(function () {
             resetDatabase();
         });

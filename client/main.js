@@ -30,6 +30,6 @@ Meteor.startup(function () {
     // <!-- FastClick -->
     // $.getScript("/admin/plugins/fastclick/fastclick.js");
     // <!-- AdminLTE App -->
-    $.getScript("/admin/dist/js/app.min.js");
+    // $.getScript("/admin/dist/js/app.min.js");
 });
 
