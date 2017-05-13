@@ -1,0 +1,42 @@
+<template name="customer_menu">
+
+	<style>
+        body { 
+        	padding-top: 5%; 
+        }
+        .btn {
+        	font-weight: 700;
+			border-radius: 60px;
+			margin-bottom: 5px;
+			/*margin-right: 1px;*/
+        }
+ /*       .category_btn {
+        	width: 16.66666667%;
+        	padding-right: 15px;
+			padding-left: 15px;
+        }*/
+        .well {
+        	margin-right: 1px;
+        }
+
+    </style>
+
+	<div class="container">
+		
+		<div class="row text-center">
+			<h2 style="font-weight: bold;"><u>TODAY'S MENU</u></h2>
+		</div>
+
+		<div class="row" style="margin-top: 3%">
+			{{#each categories}}
+				<button class="col-lg-2 col-md-2 col-sm-2 col-xs-6 btn btn-primary btn-lg categoryButton" value="{{_id}}">{{name}}</button>
+			{{/each}}
+		</div>
+
+		<div id="categoryMenuContainer">
+			{{> Template.dynamic template=categoryMenu}}
+		</div>
+
+	</div>
+	
+</template>
