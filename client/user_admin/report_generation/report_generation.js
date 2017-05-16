@@ -58,16 +58,22 @@ Template.report_satisfaction.events({
         const begin = event.target.inputBegin.value;
         const end = event.target.inputEnd.value;
 
-        const veryhappy = Rates.find({rate_no: 5, createdAt: {$gt: new Date(begin), $lt: new Date(end)}}).count();
-        const happy = Rates.find({rate_no: 4, createdAt: {$gt: new Date(begin), $lt: new Date(end)}}).count();
-        const neutral = Rates.find({rate_no: 3, createdAt: {$gt: new Date(begin), $lt: new Date(end)}}).count();
-        const sad = Rates.find({rate_no: 2, createdAt: {$gt: new Date(begin), $lt: new Date(end)}}).count();
-        const angry = Rates.find({rate_no: 1, createdAt: {$gt: new Date(begin), $lt: new Date(end)}}).count();
+        const veryhappy_val = Rates.find({rate_no: 5, createdAt: {$gt: new Date(begin), $lt: new Date(end)}}).count();
+        const happy_val = Rates.find({rate_no: 4, createdAt: {$gt: new Date(begin), $lt: new Date(end)}}).count();
+        const neutral_val = Rates.find({rate_no: 3, createdAt: {$gt: new Date(begin), $lt: new Date(end)}}).count();
+        const sad_val = Rates.find({rate_no: 2, createdAt: {$gt: new Date(begin), $lt: new Date(end)}}).count();
+        const angry_val = Rates.find({rate_no: 1, createdAt: {$gt: new Date(begin), $lt: new Date(end)}}).count();
+        const total = Rates.find({createdAt: {$gt: new Date(begin), $lt: new Date(end)}}).count();
 
-        if(veryhappy == 0 && happy == 0 && neutral == 0 && sad == 0 && angry == 0){
+        if(total==0){
         	$('#msg').html("No Data Avaliable");
         }else{
         	$('#msg').html("");
+        	veryhappy = Math.round((veryhappy_val/total)*100);
+        	happy = Math.round((happy_val/total)*100);
+        	neutral = Math.round((neutral_val/total)*100);
+        	sad = Math.round((sad_val/total)*100);
+        	angry = Math.round((angry_val/total)*100);
         }
 
         const PieData = [
@@ -108,18 +114,24 @@ Template.report_satisfaction.events({
     'click #wholeChart': function(event, template){
     	event.preventDefault();
 
-        const veryhappy = Rates.find({rate_no: 5}).count();
-        const happy = Rates.find({rate_no: 4}).count();
-        const neutral = Rates.find({rate_no: 3}).count();
-        const sad = Rates.find({rate_no: 2}).count();
-        const angry = Rates.find({rate_no: 1}).count();
+        const veryhappy_val = Rates.find({rate_no: 5}).count();
+        const happy_val = Rates.find({rate_no: 4}).count();
+        const neutral_val = Rates.find({rate_no: 3}).count();
+        const sad_val = Rates.find({rate_no: 2}).count();
+        const angry_val = Rates.find({rate_no: 1}).count();
+		const total = Rates.find({}).count();
 
-		if(veryhappy == 0 && happy == 0 && neutral == 0 && sad == 0 && angry == 0){
+        if(total==0){
         	$('#msg').html("No Data Avaliable");
         }else{
         	$('#msg').html("");
+        	veryhappy = Math.round((veryhappy_val/total)*100);
+        	happy = Math.round((happy_val/total)*100);
+        	neutral = Math.round((neutral_val/total)*100);
+        	sad = Math.round((sad_val/total)*100);
+        	angry = Math.round((angry_val/total)*100);
         }
-        
+
         const PieData = [
             {
                 value: veryhappy,
