@@ -183,3 +183,92 @@ Template.report_satisfaction.onRendered(function(){
 
 });
 //----
+
+//REPORT SUMMARY
+Template.report_summary.onRendered(function(){
+	$('#inputBegin').datepicker({
+        autoclose: true
+    });
+
+    $('#inputEnd').datepicker({
+        autoclose: true
+    });
+});
+
+Template.report_summary.onCreated(function () {
+    var self = this;
+    self.autorun(function () {
+        self.subscribe('bills');
+        self.subscribe('orders');
+    });
+
+    self.ordersNoVar = new ReactiveVar();
+    self.totalIncomeVar = new ReactiveVar();
+
+    self.ordersNoVar.set("");
+    self.totalIncomeVar.set("");
+});
+
+Template.report_summary.helpers({
+    ordersNo: ()=>{
+        return Template.instance().ordersNoVar.get();
+    },
+    totalIncome: ()=>{
+    	return Template.instance().totalIncomeVar.get();
+    }
+});
+
+Template.report_summary.events({
+	'submit form': function (event, template) {
+        event.preventDefault();
+
+        const begin = event.target.inputBegin.value;
+        const end = event.target.inputEnd.value;
+
+        let income = 0;
+
+        const cursor_bills = Bills.find({createdAt: {$gt: new Date(begin), $lt: new Date(end)}});
+        cursor_bills.forEach(function (record) {
+            income = income + record.total;
+        });
+
+        let orders = Orders.find({createdAt: {$gt: new Date(begin), $lt: new Date(end)}}).count();
+
+        if(orders==0 && income==0){
+        	$('#msg').html("No data found");
+        	template.totalIncomeVar.set("");
+        	template.ordersNoVar.set("");
+        }else{
+        	$('#msg').html("");
+        	template.totalIncomeVar.set(income);
+        	template.ordersNoVar.set(orders);
+        }
+    },
+    'click #todayReport':function(event,template) {
+    	event.preventDefault();
+
+    	let date1 = moment().startOf('day').toDate();
+    	let date2 = moment().startOf('day').add(1,'day').toDate();
+
+    	let income = 0;
+
+        const cursor_bills = Bills.find({createdAt: {$gt: date1, $lt: date2}});
+        cursor_bills.forEach(function (record) {
+            income = income + record.total;
+        });
+
+        let orders = Orders.find({createdAt: {$gt: date1, $lt: date2}}).count();
+
+        if(orders==0 && income==0){
+        	$('#msg').html("No data found");
+        	template.totalIncomeVar.set("");
+        	template.ordersNoVar.set("");
+        }else{
+        	$('#msg').html("");
+        	template.totalIncomeVar.set(income);
+        	template.ordersNoVar.set(orders);
+        }
+    }
+
+});
+//----
