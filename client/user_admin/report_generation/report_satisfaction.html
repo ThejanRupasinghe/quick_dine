@@ -1,0 +1,92 @@
+<template name="report_satisfaction">
+	
+	<section class="content-header">
+        <h1>
+            Reports
+            <small>Satisfaction Report</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Reports</li>
+        </ol>
+    </section>
+
+
+    <section class="content">
+
+        <div class="container">
+
+        	<div class="row">
+
+	        	<h4>Report for a time period:</h4>
+
+		        <div class="col-lg-8 col-md-12 col-xs-12">
+	                <form role="form" class="row">
+	                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	                        <div class="row">
+	                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding-bottom: 20px">
+	                                <div class="input-group input-group-md date">
+	                                    <div class="input-group-addon">
+	                                        Begin
+	                                    </div>
+	                                    <input id="inputBegin" name="inputBegin" type="date" class="form-control"
+	                                           placeholder="Enter beginning date" required>
+	                                </div>
+	                            </div>
+	                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="padding-bottom: 20px">
+	                                <div class="input-group input-group-md date">
+	                                    <div class="input-group-addon">
+	                                        End
+	                                    </div>
+	                                    <input id="inputEnd" name="inputEnd" type="date" class="form-control"
+	                                           placeholder="Enter ending date" required>
+	                                </div>
+	                            </div>
+	                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+	                                <button id="submit" type="submit"
+	                                        class="btn btn-primary btn-block">Get Chart
+	                                </button>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </form>
+		         </div>
+
+		    </div>
+
+		    <div class="row">
+
+		    	<div class="col-lg-2 col-md-4 col-sm-12 col-xs-12 pull-left" style="padding-right: : 20px">
+		    		<h4>Whole Report:</h4>
+		    	</div>
+
+		    	<div class="col-lg-2 col-md-4 col-sm-12 col-xs-12">
+                    <button id="wholeChart" class="btn btn-primary btn-block">Get Chart</button>
+	            </div>
+
+		    </div>
+
+		    <div class="row" style="padding-top: 40px">
+
+	        	<div class="col-lg-4 col-md-12 col-xs-12 col-lg-offset-3">
+	                <!-- DONUT CHART -->
+	                <div class="box box-warning text-center">
+	                    <div class="box-header with-border">
+	                        <h3 class="box-title">Satisfaction Chart</h3>
+	                    </div>
+	                    <span class="text-center" id="msg"></span>
+	                    <div class="box-body" style="height:250px">
+	                        <canvas id="pieChart" ></canvas>
+	                    </div>
+	                    <!-- /.box-body -->
+	                </div>
+	                <!-- /.box -->
+	            </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</template>

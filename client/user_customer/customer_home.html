@@ -3,29 +3,51 @@
 		<!-- banner -->
 		<!-- <div class="banner"> -->
 			<div class="container">
+
+				<!-- {{#if rated}}
+					<div style="padding-top: 40px;" id="success_msg">
+						<h4 style="color: yellow" class="text-center">Thank you for rating us. Your rate was recorded successfully</h4>
+					</div>
+				{{/if}} -->
+
 				<div class="banner-info">
 					<h2>Welcome to Quick Dine</h2>
 				</div>
+
 				<div class="banner-grads">
+
 					<div class="row">
-					<div class="col-md-6 col-sm-12">
-						<a href="/customer/menu">
-							<div class="banner-grad-img">
-								<img src="/images/b1.jpg" alt="" style="max-width: 250px; height: auto" />
-								<h4>Menu</h4>
-							</div>
-						</a>
+						<div class="col-md-4 col-sm-12">
+							<a href="/customer/menu/{{tableNo}}">
+								<div class="banner-grad-img">
+									<img src="/images/b1.jpg" alt="" style="max-width: 250px; height: auto" />
+									<h4>Menu</h4>
+								</div>
+							</a>
+						</div>
+
+						<div class="col-md-4 col-sm-12">
+							<a href="#callWaiter">
+								<div class="banner-grad-img">
+									<!--<img src="images/b2.jpg" alt="" />-->
+									<img src="/images/waiter.png" style="max-width: 250px; height: auto"/>
+									<h4>Call A Waiter</h4>
+								</div>
+							</a>
+						</div>
+
+						<div class="col-md-4 col-sm-12">
+							<a href="/customer/rate_page/{{tableNo}}">
+								<div class="banner-grad-img">
+									<!--<img src="images/b2.jpg" alt="" />-->
+									<img src="/images/star.png" style="max-width: 250px; height: auto"/>
+									<h4>Rate Us</h4>
+								</div>
+							</a>
+						</div>
+
 					</div>
-					<div class="col-md-6 col-sm-12">
-						<a href="#callWaiter">
-							<div class="banner-grad-img">
-								<!--<img src="images/b2.jpg" alt="" />-->
-								<img src="/images/waiter.png" style="max-width: 250px; height: auto"/>
-								<h4>Call A Waiter</h4>
-							</div>
-						</a>
-					</div>
-					</div>
+
 				</div>
 			</div>
 		<!-- </div> -->

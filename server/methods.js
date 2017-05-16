@@ -96,6 +96,11 @@ Meteor.methods({
             balance: balance,
             cashierId: cashierId
         });
+    },
+    addRateFromCustomer: function(rate_no){
+        Rates.insert({
+            rate_no: rate_no
+        });
     }
     // findItemName: function (item_id) {
     //     console.log(item_id);

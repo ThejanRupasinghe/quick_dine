@@ -1,14 +1,20 @@
 <template name="category_menu">
 
-	<div class="row" style="margin-top: 3%">
-		{{#each itemsForCategory}}
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-				<div class="well">
-					<img src="{{item_picture}}" style="width: 100px;height: 100px" />
-					<span style="font-size: 14pt; font-weight: bold;"> {{name}} - Rs. {{unit_price}}.00</span>
+	{{#if Template.subscriptionsReady}}
+
+		<div class="row" style="margin-top: 3%">
+			{{#each itemsForCategory}}
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<div class="well">
+						<img src="{{item_picture}}" style="width: 100px;height: 100px" />
+						<span style="font-size: 14pt; font-weight: bold;"> {{name}} - Rs. {{unit_price}}.00</span>
+					</div>
 				</div>
-			</div>
-		{{/each}}
-	</div>
+			{{/each}}
+		</div>
+
+	{{else}}
+		<h3 class="text-center">Loading...</h3>
+	{{/if}}
 	
 </template>

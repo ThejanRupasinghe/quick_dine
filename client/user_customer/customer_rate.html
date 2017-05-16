@@ -1,0 +1,98 @@
+<template name="customer_rate">
+
+	<!-- 	<style type="text/css">
+		html,body{
+		    margin:0;
+		    height:100%;
+		    overflow:hidden;
+		}
+		img{
+		    min-height:100%;
+		    min-width:100%;
+		    height:auto;
+		    width:auto;
+		    position:absolute;
+		    top:-100%; bottom:-100%;
+		    left:-100%; right:-100%;
+		    margin:auto;
+		}
+	</style>
+	
+	<img src="/images/rate.jpeg" alt="" usemap="#Map" />
+	<map name="Map" id="Map">
+	    <area alt="" title="" href="#" shape="rect" coords="20,72,100,202" />
+	    <area alt="" title="" href="#" shape="rect" coords="109,73,187,199" />
+	    <area alt="" title="" href="#" shape="rect" coords="199,75,280,200" />
+	    <area alt="" title="" href="#" shape="rect" coords="292,76,371,197" />
+	    <area alt="" title="" href="#" shape="rect" coords="382,76,465,201" />
+	</map> -->
+	
+	<style>
+        body { padding-top: 70px; }
+    </style>
+
+	<div class="container">
+		<div>
+			<h1 class="pull-left" style="font-weight: bolder;color: white">I feel ,</h1>
+		</div>
+		<br>
+		<div class="banner-grads">
+
+			<div class="row">
+
+				<div class="col-md-4 col-sm-12">
+					<a href="/customer/rate/{{tableNo}}/5">
+						<div class="banner-grad-img">
+							<img src="/images/smile_veryhappy.png" alt="" style="max-width: 250px; height: auto" />
+							<h4>Very Happy</h4>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-md-4 col-sm-12">
+					<a href="/customer/rate/{{tableNo}}/4">
+						<div class="banner-grad-img">
+							<img src="/images/smile_happy.png" style="max-width: 250px; height: auto"/>
+							<h4>Happy</h4>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-md-4 col-sm-12">
+					<a href="/customer/rate/{{tableNo}}/3">
+						<div class="banner-grad-img">
+							<img src="/images/smile_neutral.png" style="max-width: 250px; height: auto"/>
+							<h4>Neutral</h4>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-md-4 col-sm-12">
+					<a href="/customer/rate/{{tableNo}}/2">
+						<div class="banner-grad-img">
+							<img src="/images/smile_sad.png" style="max-width: 250px; height: auto"/>
+							<h4>Sad</h4>
+						</div>
+					</a>
+				</div>
+
+				<div class="col-md-4 col-sm-12">
+					<a href="/customer/rate/{{tableNo}}/1">
+						<div class="banner-grad-img">
+							<img src="/images/smile_angry.png" style="max-width: 250px; height: auto"/>
+							<h4>Angry</h4>
+						</div>
+					</a>
+				</div>
+
+			</div>
+
+		</div>
+
+		<br>
+
+		<h1 class="text-center pull-right" style="color: white; font-weight: bolder;">about your service..</h1>
+
+	</div>
+
+</template>

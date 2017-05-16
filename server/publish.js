@@ -34,3 +34,7 @@ Meteor.publish("ordersByStatus",function (status) {
         return Orders.find({status: status});
     }
 });
+
+Meteor.publish("rates", function () {
+    return Rates.find({});
+});
