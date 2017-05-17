@@ -1,0 +1,74 @@
+<template name="view_bill_cashier">
+
+	<style type="text/css">
+		#backButton{
+            padding: 18px 28px;
+            font-size: 22px;
+            line-height: normal;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+        }
+	</style>
+	
+	<div class="row">
+
+		<div class="col-lg-6 col-lg-offset-3 well" id="bill">
+			<div class="text-center">
+				<!-- <img src="/images/logo.jpg" style="height: 60px; width: auto;"> -->
+				<h3>Quick Dine</h3>
+				<h4>Tel No: 077-9020962</h4>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-lg-3">
+					<span style="font-size: 17px; font-weight: bold;">&nbsp;Bill No: {{data.billNo}}</span>
+				</div>
+				<div class="col-lg-4 col-lg-offset-3">
+					<span style="font-size: 17px; font-weight: bold;">&nbsp;Date: {{takeDate data.billDate}}</span>
+				</div>
+			</div>
+			<br>
+			<table border="1">
+				<tr>
+					<th width="220px">Food Item</th>
+					<th width="80px" >Quantity</th>
+					<th width="120px">Unit Price (Rs.)</th>
+					<th width="120px">Amount (Rs.) </th>
+				</tr>
+				{{#each data.menuItems}}
+					<tr>
+						<td style="text-align: center">{{name}}</td>
+						<td style="text-align: center">{{quantity}}</td>
+						<td style="text-align: right">{{unit_price}}.00&nbsp;</td>
+						<td style="text-align: right">{{eachAmount unit_price quantity}}.00&nbsp;</td>
+					</tr>
+				{{/each}}
+				<tr>
+					<th colspan="3">Total</th>
+					<td style="text-align: right">{{data.total}}.00&nbsp;</td>
+				</tr>
+				<tr>
+					<th colspan="3">Payment</th>
+					<th style="text-align: right">{{data.payment}}.00&nbsp;</th>
+				</tr>
+				<tr>
+					<th colspan="3">Balance</th>
+					<td style="text-align: right">{{data.balance}}.00&nbsp;</td>
+				</tr>
+			</table>
+			<br><br>
+			<div class="row text-center">
+				THANK YOU FOR DINING WITH US<br>PLEASE COME AGAIN 
+			</div>	
+		</div>
+
+	</div>
+
+	<div class="row text-center">
+		<div class="btn btn-info text-center" id="backButton">
+			<strong>BACK</strong>
+		</div>
+	</div>
+
+</template>

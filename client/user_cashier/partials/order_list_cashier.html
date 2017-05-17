@@ -30,11 +30,11 @@
                 <div class="well" style="background: rgba(109,197,8,0.58); font-weight: bolder; color: black; font-size: 20px">
                     <div class="row">
                         <div class="col-md-2">
-                            Table No: {{order.tableNo}}
+                            Bill No: {{takeBillNo order._id}}
                         </div>
                         <div class="col-lg-2 col-lg-offset-7 text-center">
                             <!--<a href="/kitchen/view_order/{{order._id}}">-->
-                            <button type="button" class="btn btn-info btn-lg view-order-button"
+                            <button type="button" class="btn btn-info btn-lg view-bill-button"
                                     style="font-weight: bolder; color: black; font-size: 20px" value="{{order._id}}"><span
                                     class="glyphicon glyphicon-list-alt"></span> VIEW
                             </button>

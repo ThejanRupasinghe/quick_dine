@@ -27,6 +27,7 @@ Template.order_list_cashier.onCreated(function () {
     self.autorun(function () {
         self.subscribe('ordersByStatus');
         self.subscribe('menuItems');
+        self.subscribe('bills');
     });
 });
 
@@ -45,6 +46,9 @@ Template.order_list_cashier.helpers({
     },
     billed: function (status) {
         return status==4;
+    },
+    takeBillNo: function(id){
+        return Bills.findOne({orderId: id}).billNo;
     }
 });
 
@@ -71,11 +75,40 @@ Template.order_list_cashier.events({
         passOrder.total = total;
 
         BlazeLayout.render('cashier_layout', {content: 'bill_order_cashier', data: passOrder});
+    },
+    'click .view-bill-button': function(event){
+        let order_id = event.target.value;
+        let order = Orders.findOne({_id: order_id});
+        let bill = Bills.findOne({orderId: order_id});
+
+        passData = {menuItems: []};
+
+        for (var index in order.menuItems){
+            var item = order.menuItems[index];
+            var item_details = MenuItems.findOne({_id: item.item_id},{fields: {name:1, unit_price:1}});
+
+            passData.menuItems.push({name: item_details.name, quantity: item.quantity, unit_price: item_details.unit_price});
+        }
+
+        passData.total = bill.total;
+        passData.payment = bill.payment;
+        passData.balance = bill.balance;
+        passData.billNo = bill.billNo;
+        passData.billDate = bill.createdAt;
+
+        BlazeLayout.render('cashier_layout', {content: 'view_bill_cashier', data: passData});
     }
 });
 //----
 
 //BILL ORDER CASHIER
+Template.bill_order_cashier.onCreated(function () {
+    var self = this;
+    self.autorun(function () {
+        self.subscribe('bills');
+    });
+});
+
 Template.bill_order_cashier.helpers({
     billDate: function(){
         n =  new Date();
@@ -85,7 +118,7 @@ Template.bill_order_cashier.helpers({
         return d + " - " + m + " - " + y;
     },
     billNo: function () {
-        return ;
+        return Bills.find({}).count()+1;
     },
     eachAmount: function(unit_price,quantity){
         return unit_price*quantity;
@@ -113,13 +146,14 @@ Template.bill_order_cashier.events({
     'click #submitButton': function(){
         var orderId = passOrder._id;
         var total = passOrder.total;
+        var billNo = Bills.find({}).count()+1;
 
         if(isNaN(payment) || payment==0 || payment<passOrder.total){
 
         }else{
             var balance = payment - total;
 
-            Meteor.call('addBillFromCashier', orderId, total, payment, balance, Meteor.userId(),function(error){
+            Meteor.call('addBillFromCashier', orderId, billNo, total, payment, balance, Meteor.userId(),function(error){
                 if(error!==undefined){
                    
                 }else{
@@ -144,6 +178,30 @@ Template.bill_order_cashier.events({
                 }
             });  
         }
+    },
+    'click #backButton': function(){
+        BlazeLayout.render('cashier_layout',{content: 'cashier_home', order_list: 'order_list_cashier'});
     }
 });
+//----
+
+//VIEW BILL CASHIER
+Template.view_bill_cashier.helpers({
+    eachAmount: function(unit_price,quantity){
+        return unit_price*quantity;
+    },
+    takeDate: function(date){
+        y = date.getFullYear();
+        m = date.getMonth() + 1;
+        d = date.getDate();
+        return d + " - " + m + " - " + y;
+    }
+});
+
+Template.view_bill_cashier.events({
+    'click #backButton': function(){
+        BlazeLayout.render('cashier_layout',{content: 'cashier_home', order_list: 'order_list_cashier'});
+    }
+});
+
 //----

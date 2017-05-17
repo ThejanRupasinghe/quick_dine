@@ -21,6 +21,10 @@ BillSchema = new SimpleSchema({
             })
         }
     },
+    billNo: {
+        type: Number,
+        min: 1
+    },
     total:{
         type: Number,
         min: 0
