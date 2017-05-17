@@ -14,7 +14,8 @@
     <section class="content">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-md-offset-2">
+
+                <div class="col-md-6">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Add New Menu Item</h3>
@@ -55,6 +56,31 @@
                         </form>
                     </div>
                 </div>
+
+                <div class="col-md-5">
+                    <div class="box box-warning">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Add Removed Menu Items</h3>
+                        </div>
+                        {{#if Template.subscriptionsReady}}
+                            <table border="1" style="margin-right: 40px; margin-left: 50px; margin-top: 8px; padding-bottom: 10px">
+                                    <thead>
+                                        {{#each menuItems}}
+                                            <tr>
+                                                <th style="width: 250px;height: 40px">&nbsp;{{name}}</th>
+                                                <th style="width: 100px">
+                                                    <button type="button" class="btn btn-success btn-flat" style="margin-left: 30px" id="add-item" value="{{_id}}"><i class="fa fa-check"></i></button>
+                                                </th>
+                                            </tr>
+                                        {{/each}}
+                                    </thead>
+                            </table>
+                        {{else}}
+                            Loading...
+                        {{/if}}
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>

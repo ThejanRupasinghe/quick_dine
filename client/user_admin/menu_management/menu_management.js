@@ -3,12 +3,16 @@ Template.add_menu_items.onCreated(function () {
     var self = this;
     self.autorun(function () {
         self.subscribe('categories');
+        self.subscribe('menuItems');
     });
 });
 
 Template.add_menu_items.helpers({
     categories: ()=>{
         return Categories.find({});
+    },
+    menuItems: ()=>{
+        return MenuItems.find({inMenu: false});
     }
 });
 
@@ -98,6 +102,17 @@ Template.add_menu_items.events({
                     });
                 }
             }
+        }
+
+    },
+    'click #add-item': function(event){
+        event.preventDefault();
+
+        var id = event.target.value;
+
+        if(confirm("Are you sure want to add this item to menu ?")){
+            Meteor.call('addItemToMenuFromAdmin',id);
+            alert("Menu Item added successfully !");
         }
 
     }
@@ -257,7 +272,7 @@ Template.item_record.events({
     'click #remove-item': function(){
         if(confirm("Are you sure want to remove this item from menu ?")){
             Meteor.call('removeItemMenuFromAdmin',this.item._id);
-            alert("Menu Item deleted successfully !");
+            alert("Menu Item removed successfully !");
         }
     }
 });

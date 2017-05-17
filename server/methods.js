@@ -77,6 +77,9 @@ Meteor.methods({
     removeItemMenuFromAdmin:function(id){
         MenuItems.update(id, {$set: {"inMenu": false}});
     },
+    addItemToMenuFromAdmin:function(id){
+        MenuItems.update(id, {$set: {"inMenu": true}});
+    },
     addOrderFromWaiter:function (tableNo, menuItems, waiterId) {
         Orders.insert({
             tableNo: tableNo,
